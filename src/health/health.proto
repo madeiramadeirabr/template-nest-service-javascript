@@ -2,8 +2,15 @@ syntax = "proto3";
 
 package health;
 
+import "google/api/annotations.proto";
+
 service HealthService {
-    rpc GetStatus(GetStatusRequest) returns (Status);
+    rpc GetStatus(GetStatusRequest) returns (Status) {
+        option (google.api.http) = {
+            get: "/health"
+            body: "*"
+        };
+    };
 }
 
 message Status {
