@@ -3,9 +3,11 @@ syntax = "proto3";
 package health;
 
 service HealthService {
-    rpc GetStatus() returns (Status);
+    rpc GetStatus(GetStatusRequest) returns (Status);
 }
 
 message Status {
     bool alive = 1;
 }
+
+message GetStatusRequest {}
