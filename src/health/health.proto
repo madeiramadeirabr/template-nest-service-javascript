@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package health;
+
+service HealthService {
+    rpc GetStatus() returns (Status);
+}
+
+message Status {
+    bool alive = 1;
+}
