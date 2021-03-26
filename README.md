@@ -8,8 +8,8 @@ MadeiraMadeira boilerplate project to build scalable, testable and high performa
  
 ## Stack
 
-- [Nest](https://github.com/nestjs/nest): A progressive Node.js + TypeScript framework;
-- [gRPC](https://grpc.io): a Remote Procedure Call framework;
+- [NestJS](https://github.com/nestjs/nest): a progressive Node.js + TypeScript framework;
+- [gRPC](https://grpc.io): a Remote Procedure Call framework.
 
 ## Installation
 
