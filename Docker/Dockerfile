@@ -18,6 +18,8 @@ RUN npm install -g @nestjs/cli
 
 RUN npm install && sh compile.proto.sh
 
+RUN npm rebuild grpc --force
+
 EXPOSE 5000
 
 CMD ["npm", "start"]
