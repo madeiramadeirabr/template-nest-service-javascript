@@ -4,10 +4,15 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { Logger } from '@nestjs/common';
 
+const port = '5000';
+const host = 'localhost';
+const url = host + ':' + port;
+process.env.HOST = host;
+process.env.PORT = port;
+process.env.URL = url;
 const logger = new Logger('Main');
-const url = 'localhost:5000';
 
-async function bootstrap() {
+const bootstrap = async () => {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {
@@ -19,7 +24,8 @@ async function bootstrap() {
     },
   );
   await app.listen(() =>
-    logger.log('Nest Service Template Listening on ' + url),
+    logger.log('🍻 Core APIs Nest Service Template listening on ' + url),
   );
-}
+};
+
 bootstrap();
