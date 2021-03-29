@@ -1,13 +1,15 @@
 import { Controller } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
 import { StatusInterface } from './interfaces/status.interface';
+import { HealthService } from './health.service';
 
 @Controller('health')
 export class HealthController {
+  constructor(private healthService: HealthService) {}
+
   @GrpcMethod('HealthService')
   getStatus(): StatusInterface {
-    return {
-      alive: true,
-    };
+    const health = this.healthService.getStatus();
+    return health.getResource();
   }
 }

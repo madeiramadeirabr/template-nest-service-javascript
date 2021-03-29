@@ -1,48 +1,55 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Core APIs NestJS Service Template
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+<p align="left">  
+<img src="https://img.shields.io/badge/status-work in progress-orange" alt="Status">    
+</p> 
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+MadeiraMadeira boilerplate project to build scalable, testable and high performance Node.js microservices. 
+ 
+## Stack
 
-## Description
+- [NestJS](https://github.com/nestjs/nest): a progressive Node.js + TypeScript framework based on dependency injection;
+- [gRPC](https://grpc.io): a *Remote Procedure Call* framework that provides high performance communication between microservices.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Features
+- Husky Git hooks that automatically runs [ESLint](https://eslint.org) and [Prettier](https://prettier.io) before all commits;
+- `ConfigService`: easily manage environment variables;
+- `Health` module: a gRPC endpoint that displays relevant information about the application status and serves as example for creating other gRPC services with [protobufs](https://developers.google.com/protocol-buffers);
+- Docker infrastructure with Docker Compose.
 
 ## Installation
 
 ```bash
+$ cp example.env .env
 $ npm install
 ```
 
 ## Running the app
 
 ```bash
-# development
+# local development
 $ npm run start
 
-# watch mode
+# local watch mode
 $ npm run start:dev
 
-# production mode
+# local production mode
 $ npm run start:prod
+
+# Docker environment
+$ docker-compose up
+```
+Use some gRPC client (like [Kreya](https://kreya.app) or [Insomnia](https://insomnia.rest)) to hit 
+`http://localhost:5000/health.HealthService.GetStatus`. If everything goes well, you should receive a JSON as response:
+```json
+{
+  "alive": true,
+  "applicationName": "Core APIs Nest Service Template",
+  "host": "localhost",
+  "port": "5000",
+  "env": "development",
+  "message": "Uncle Bob we love you"
+}
 ```
 
 ## Test
@@ -56,18 +63,15 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+``` 
+
+## Getting started with boilerplate
+
+Download and extract the project, then:
+```bash
+$ mv nest-service-template-production {your_project_name}
+$ git init
+$ git remote add origin https://github.com/{user}/{repo}.git
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Hint: use `$ git remote -v` to verify new remote
