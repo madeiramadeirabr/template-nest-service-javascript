@@ -1,7 +1,7 @@
 # Core APIs NestJS Service Template
 
 <p align="left">  
-<img src="https://img.shields.io/badge/status-work in progress-orange" alt="Status">    
+<img src="https://img.shields.io/badge/status-finished-green" alt="Status">    
 </p> 
 
 MadeiraMadeira boilerplate project to build scalable, testable and high performance Node.js microservices. 
