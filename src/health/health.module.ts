@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
-import { HealthController } from './health.controller';
+import { HealthGrpcController } from './health-grpc.controller';
 import { ConfigModule } from '@nestjs/config';
 import { HealthService } from './health.service';
+import { HealthController } from './health.controller';
 
 @Module({
   imports: [ConfigModule.forRoot()],
-  controllers: [HealthController],
+  controllers: [HealthGrpcController, HealthController],
   providers: [HealthService],
 })
 export class HealthModule {}

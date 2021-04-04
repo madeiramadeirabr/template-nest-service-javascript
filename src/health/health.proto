@@ -9,10 +9,10 @@ service HealthService {
 message Status {
     bool alive = 1;
     string applicationName = 2;
-    string host = 3;
-    string port = 4;
-    string env = 5;
-    string message = 6;
+    string grpcPort = 4;
+    string restPort = 5;
+    string env = 6;
+    string message = 7;
 }
 
 message GetStatusRequest {}

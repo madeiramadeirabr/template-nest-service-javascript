@@ -3,8 +3,8 @@ import { StatusInterface } from './interfaces/status.interface';
 
 export class Health implements ResourceInterface {
   private _alive: boolean;
-  private _host: string;
-  private _port: string;
+  private _grpcPort: string;
+  private _restPort: string;
   private _env: string;
   private _message: string;
   private _applicationName: string;
@@ -13,11 +13,19 @@ export class Health implements ResourceInterface {
     return {
       alive: this.alive,
       applicationName: this.applicationName,
-      host: this.host,
-      port: this.port,
+      grpcPort: this.grpcPort,
+      restPort: this.restPort,
       env: this.env,
       message: this.message,
     };
+  }
+
+  get restPort(): string {
+    return this._restPort;
+  }
+
+  set restPort(value: string) {
+    this._restPort = value;
   }
 
   get applicationName(): string {
@@ -42,18 +50,11 @@ export class Health implements ResourceInterface {
     this._env = value;
   }
 
-  get port(): string {
-    return this._port;
+  get grpcPort(): string {
+    return this._grpcPort;
   }
-  set port(value: string) {
-    this._port = value;
-  }
-
-  get host(): string {
-    return this._host;
-  }
-  set host(value: string) {
-    this._host = value;
+  set grpcPort(value: string) {
+    this._grpcPort = value;
   }
 
   get alive(): boolean {

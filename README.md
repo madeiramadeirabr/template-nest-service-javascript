@@ -9,12 +9,13 @@ MadeiraMadeira boilerplate project to build scalable, testable and high performa
 ## Stack
 
 - [NestJS](https://github.com/nestjs/nest): a progressive Node.js + TypeScript framework based on dependency injection;
-- [gRPC](https://grpc.io): a *Remote Procedure Call* framework that provides high performance communication between microservices.
+- [gRPC](https://grpc.io): a Remote Procedure Call framework that provides high performance communication between microservices.
 
 ## Features
+- REST and gRPC layers; 
 - Husky Git hooks that automatically runs [ESLint](https://eslint.org) and [Prettier](https://prettier.io) before all commits;
 - `ConfigService`: easily manage environment variables;
-- `Health` module: a gRPC endpoint that displays relevant information about the application status and serves as example for creating other gRPC services with [protobufs](https://developers.google.com/protocol-buffers);
+- `Health` module: a gRPC and a REST endpoint that displays relevant information about the application status;
 - Docker infrastructure with Docker Compose.
 
 ## Installation
@@ -39,14 +40,19 @@ $ npm run start:prod
 # Docker environment
 $ docker-compose up
 ```
-Use some gRPC client (like [Kreya](https://kreya.app) or [Insomnia](https://insomnia.rest)) to hit 
-`http://localhost:5000/health.HealthService.GetStatus`. If everything goes well, you should receive a JSON as response:
+
+#### Endpoints
+* gRPC: use a gRPC client (like [Kreya](https://kreya.app) or [Insomnia](https://insomnia.rest)) to hit 
+`http://localhost:5000/health.HealthService.GetStatus`
+* REST: `http://localhost:3001/health`
+
+#### Response
 ```json
 {
   "alive": true,
   "applicationName": "Core APIs Nest Service Template",
-  "host": "localhost",
-  "port": "5000",
+  "grpcPort": "5000",
+  "restPort": "3001",
   "env": "development",
   "message": "Uncle Bob we love you"
 }

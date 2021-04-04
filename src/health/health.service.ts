@@ -12,11 +12,10 @@ export class HealthService {
 
   private buildHealth(message: string, alive: boolean) {
     const health = new Health();
-    health.host = process.env?.HOST || 'unknown host';
     health.alive = alive;
     health.applicationName = this.configService.get<string>('APPLICATION_NAME');
-    health.host = process.env?.HOST || 'unknown host';
-    health.port = process.env?.PORT || 'unknown port';
+    health.grpcPort = process.env?.GRPC_PORT || 'unknown port';
+    health.restPort = process.env?.REST_PORT || 'unknown port';
     health.env = process.env?.APPLICATION_ENV || 'unknown environment';
     health.message = message;
     return health;
