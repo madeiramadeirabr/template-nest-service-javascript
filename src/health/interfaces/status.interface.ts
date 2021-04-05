@@ -1,8 +1,8 @@
 export interface StatusInterface {
   alive: boolean;
   applicationName: string;
-  host: string;
-  port: string;
+  grpcPort: string;
+  restPort: string;
   env: string;
   message: string;
 }

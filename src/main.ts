@@ -1,30 +1,27 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { join } from 'path';
+import { MicroserviceOptions } from '@nestjs/microservices';
 import { Logger } from '@nestjs/common';
+import { grpcClientOptions } from './grpc-client.options';
 
-const port = '5000';
-const host = 'localhost';
-const url = host + ':' + port;
-process.env.HOST = host;
-process.env.PORT = port;
-process.env.URL = url;
 const logger = new Logger('Main');
 
 const bootstrap = async () => {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
-    {
-      transport: Transport.GRPC,
-      options: {
-        package: 'health',
-        protoPath: join(__dirname, 'health/health.proto'),
-      },
-    },
+  const restPort = 3001;
+  process.env.REST_PORT = restPort.toString();
+  const grpcPort = 5000;
+  process.env.GRPC_PORT = grpcPort.toString();
+  const app = await NestFactory.create(AppModule);
+  app.connectMicroservice<MicroserviceOptions>(grpcClientOptions);
+  await app.startAllMicroservicesAsync();
+  await app.listen(restPort);
+  logger.log(
+    '🍻️ Core APIs Nest Service Template REST layer listening on port ' +
+      restPort,
   );
-  await app.listen(() =>
-    logger.log('🍻 Core APIs Nest Service Template listening on ' + url),
+  logger.log(
+    '🍻️ Core APIs Nest Service Template gRPC layer listening on port ' +
+      grpcPort,
   );
 };
 

@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-import { HealthService } from './health.service';
+import { Controller } from '@nestjs/common';
+import { GrpcMethod } from '@nestjs/microservices';
 import { StatusInterface } from './interfaces/status.interface';
+import { HealthService } from './health.service';
 
-@Controller('health')
-export class HealthController {
+@Controller('health-grpc')
+export class HealthGrpcController {
   constructor(private healthService: HealthService) {}
 
-  @Get()
+  @GrpcMethod('HealthService')
   getStatus(): StatusInterface {
     const health = this.healthService.getStatus();
     return health.getResource();
