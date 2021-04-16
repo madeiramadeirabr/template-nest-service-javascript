@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  health:
+    image: nest-service-template
+    build:
+      context: .
+      dockerfile: dockerfile
+    volumes:
+      - ../:/app
+    ports:
+      - 5000:5000
+      - 3001:3001
