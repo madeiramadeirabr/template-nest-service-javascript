@@ -19,14 +19,29 @@ MadeiraMadeira boilerplate project to build scalable, testable and high performa
 - Docker infrastructure with Docker Compose.
 
 ## Installation
+  ### Using Docker
+  ```bash
+  $ cp example.env .env
+  $ npm install --target=12.0.0 --target_platform=linux --target_arch=x64 --target_libc=musl
+  ```
+  ### Locally
+  ```bash
+  $ cp example.env .env
+  $ npm install
+  ```
 
-```bash
-$ cp example.env .env
-$ npm install
-```
 
 ## Running the app
+### Using Docker
+```bash
+# development with watch mode
+docker-compose -f docker/docker-compose.yml up
 
+# production
+## TODO: create production image
+```
+
+### Locally
 ```bash
 # local development
 $ npm run start
@@ -36,9 +51,6 @@ $ npm run start:dev
 
 # local production mode
 $ npm run start:prod
-
-# Docker environment
-$ docker-compose up
 ```
 
 #### Endpoints
