@@ -5,6 +5,7 @@ import { GrpcOptions } from '@nestjs/microservices/interfaces/microservice-confi
 export const grpcClientOptions: GrpcOptions = {
   transport: Transport.GRPC,
   options: {
+    url: '0.0.0.0:5000',
     package: 'health',
     protoPath: join(__dirname, 'health/health.proto'),
   },
