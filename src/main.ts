@@ -2,14 +2,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { Logger } from '@nestjs/common';
-import { grpcClientOptions } from './grpc-client.options';
+import { grpcClientOptions, grpcPort } from './grpc-client.options';
 
 const logger = new Logger('Main');
 
 const bootstrap = async () => {
   const restPort = 3001;
   process.env.REST_PORT = restPort.toString();
-  const grpcPort = 5000;
   process.env.GRPC_PORT = grpcPort.toString();
   const app = await NestFactory.create(AppModule);
   app.connectMicroservice<MicroserviceOptions>(grpcClientOptions);

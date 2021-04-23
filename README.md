@@ -1,9 +1,5 @@
 # Core APIs NestJS Service Template
 
-<p align="left">  
-<img src="https://img.shields.io/badge/status-finished-green" alt="Status">    
-</p> 
-
 MadeiraMadeira boilerplate project to build scalable, testable and high performance Node.js microservices. 
  
 ## Stack
@@ -18,14 +14,27 @@ MadeiraMadeira boilerplate project to build scalable, testable and high performa
 - `Health` module: a gRPC and a REST endpoint that displays relevant information about the application status;
 - Docker infrastructure with Docker Compose.
 
-## Installation
+## Installation for local development with Docker
 
+### Installation
+```bash
+$ cp example.env .env
+$ npm install --target=12.0.0 --target_platform=linux --target_arch=x64 --target_libc=musl
+```
+Notice: these flags are needed to build the gRPC package to the correct container architecture. This issue
+will be fixed in the next major release of NestJS (https://github.com/nestjs/nest/pull/6349). 
+
+### Running the app
+```bash
+$ docker-compose up
+```
+
+## Installation for local development
 ```bash
 $ cp example.env .env
 $ npm install
 ```
-
-## Running the app
+### Running the app
 
 ```bash
 # local development
@@ -41,12 +50,12 @@ $ npm run start:prod
 $ docker-compose up
 ```
 
-#### Endpoints
+## Endpoints
 * gRPC: use a gRPC client (like [Kreya](https://kreya.app) or [Insomnia](https://insomnia.rest)) to hit 
 `http://localhost:5000/health.HealthService.GetStatus`
 * REST: `http://localhost:3001/health`
 
-#### Response
+### Response
 ```json
 {
   "alive": true,
