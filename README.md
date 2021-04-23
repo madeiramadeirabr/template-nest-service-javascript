@@ -45,9 +45,6 @@ $ npm run start:dev
 
 # local production mode
 $ npm run start:prod
-
-# Docker environment
-$ docker-compose up
 ```
 
 ## Endpoints
