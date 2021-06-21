@@ -1,0 +1,62 @@
+name: Node.js CI
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    name: Npm install & build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+    - run: npm ci #Restore: github action (yaml)
+    - run: npm run build --if-present #Build: github action (yaml)
+
+  test: 
+    needs: build
+    name: Npm test & coverage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+    - run: npm ci #Restore: github action (yaml)
+    - run: npm run coverage #Test: github action (yaml *w/ output file)
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v1
+      with:
+        name: code-coverage-report
+        path: coverage
+
+  sonarcloud:
+    needs: test
+    name: Sonarcloud scan #Sonar: github sonarscan plugin / github action (yaml)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: actions/download-artifact@v1
+        with:
+          name: code-coverage-report
+          path: coverage
+      - uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_XPTO }}  
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+ 
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        SLACK_MESSAGE: ${{github.event.pull_request.user.login}} opened a PR "${{github.event.pull_request.title}}" on branch "${{github.event.pull_request.head.ref}}"
