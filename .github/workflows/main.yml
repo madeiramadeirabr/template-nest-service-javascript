@@ -47,7 +47,7 @@ jobs:
           path: coverage
       - uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_XPTO }}  
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}  
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
  
   slackNotification:
