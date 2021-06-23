@@ -12,7 +12,6 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${{github.event.pull_request.head.ref}} | awk -F/ '{print $NF}')"
         id: extract_branch
       - if: '${{ steps.extract_branch.outputs.branch }} =~ /[a-zA-Z]+\-[0-9]+/'
-        when: always
       - when: on_success
       - name: Login
         uses: atlassian/gajira-login@master
