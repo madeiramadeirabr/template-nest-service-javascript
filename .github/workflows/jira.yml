@@ -8,9 +8,8 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: Extract branch name
-        uses: atlassian/gajira-transition@master
-        shell: bash
         run: echo "##[set-output name=branch;]$(echo ${{github.event.pull_request.head.ref}} | awk -F/ '{print $NF}')"
+        shell: bash
         id: extract_branch
       - if: '${{ steps.extract_branch.outputs.branch }} =~ /[a-zA-Z]+\-[0-9]+/'
       - when: on_success
