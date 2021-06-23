@@ -8,6 +8,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: Extract branch name
+        uses: atlassian/gajira-transition@master
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${{github.event.pull_request.head.ref}} | awk -F/ '{print $NF}')"
         id: extract_branch
