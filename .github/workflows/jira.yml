@@ -1,7 +1,7 @@
 name: Jira CI
 on:
-  push:
-    branches: [ main ]
+  pull_request:
+    branches: [ production ]
 jobs:
   test-transition-issue:
       name: Transition Issue
