@@ -19,10 +19,11 @@ jobs:
         id: get-request
         uses: satak/webrequest-action@master
         with:
-          url: https://my-json-server.typicode.com/typicode/demo/posts
+          url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
           method: GET
+          headers: '{"Authentication": "Token ${{ secrets.JIRA_API_TOKEN }}"}'
       - name: get-request output
         shell: pwsh
         run: |
-          $output = '${{ steps.get-request.outputs.output }}' | ConvertFrom-Json
-          $output.data[0].id -eq 1
+          $output = '${{ steps.webhook.outputs.output }}' | ConvertFrom-Json
+          Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
