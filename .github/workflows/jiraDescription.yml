@@ -28,4 +28,3 @@ jobs:
         shell: pwsh
         run: |
           $output = '${{ steps.webhook.outputs.output }}'
-          Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
