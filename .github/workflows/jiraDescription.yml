@@ -20,8 +20,9 @@ jobs:
         uses: satak/webrequest-action@master
         with:
           url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
+          user: lucas.villatore@madeiramadeira.com.br:${{ secrets.JIRA_API_TOKEN }}
           method: GET
-          headers: '{"Authentication": "Token ${{ secrets.JIRA_API_TOKEN }}"}'
+          headers: 'Accept: application/json'
       - name: get-request output
         shell: pwsh
         run: |
