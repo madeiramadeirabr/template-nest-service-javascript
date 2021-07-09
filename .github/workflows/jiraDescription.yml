@@ -27,4 +27,4 @@ jobs:
       - name: get-request output
         shell: pwsh
         run: |
-          $output = '${{ steps.webhook.outputs.output }}'
+          $output = '1234'
