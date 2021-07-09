@@ -61,16 +61,15 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: ${{github.event.pull_request.user.login}} opened a PR "${{github.event.pull_request.title}}" on branch "${{github.event.pull_request.head.ref}}"
   
-  # jiraDescription:
-  #   name: Jira Description
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: satak/webrequest-action@master
-  #   - name: Jira Description
-  #   - with:
-  #       url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
-  #       method: GET
-  #       headers: '{"Authentication": "Token ${{ secrets.JIRA_API_TOKEN }}"}'
-  #   - run: |
-  #       $output = '${{ steps.webhook.outputs.output }}' | ConvertFrom-Json
-  #       Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
+  jiraDescription:
+    name: Jira Description
+    runs-on: ubuntu-latest
+    steps:
+    - uses: satak/webrequest-action@master    
+    - with:
+        url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
+        method: GET
+        headers: '{"Authentication": "Token ${{ secrets.JIRA_API_TOKEN }}"}'
+    - run: |
+        $output = '${{ steps.webhook.outputs.output }}' | ConvertFrom-Json
+        Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"
