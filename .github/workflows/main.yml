@@ -65,6 +65,8 @@ jobs:
     name: Jira Description
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
+    - name: Jira Description
     - uses: satak/webrequest-action@master    
     - with:
         url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
