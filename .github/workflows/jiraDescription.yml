@@ -23,7 +23,6 @@ jobs:
           method: GET
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
-          headers: 'application/json'
       - name: get-request output
         shell: pwsh
         run: |
