@@ -7,12 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Pega descrição da tarefa do jira
+      id: request
       uses: fjogeleit/http-request-action@master
       with:
         url: 'https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description'
         method: 'GET'
-        username: lucas.villatore@madeiramadeira.com.br
-        password: D4vuqvluqUFpp8T1EYNMC4C8
+        username: ${{ secrets.JIRA_USER_EMAIL }}
+        password: ${{ secrets.JIRA_API_TOKEN }}
     - name: Mostra na tela a resposta da requisição
-      shell: pwsh
-      run: echo ${{ steps.myRequest.outputs.response }}
+        shell: pwsh
+        run: |
+          echo ${{ steps.request.outputs.response }}
