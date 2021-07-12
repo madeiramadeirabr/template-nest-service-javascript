@@ -12,11 +12,6 @@ jobs:
         with:
           node-version: '14.x'
       - run: npm install
-      - name: Mostra na tela a resposta da requisição
-        shell: pwsh
-        run: |
-          echo '${{ secrets.JIRA_USER_EMAIL }}'
-          echo '${{ secrets.JIRA_API_TOKEN }}'
       - name: Pega descrição da tarefa do jira
         id: webhook
         uses: fjogeleit/http-request-action@master
@@ -25,4 +20,9 @@ jobs:
           method: GET
           username: ${{ secrets.JIRA_USER_EMAIL }}
           password: ${{ secrets.JIRA_API_TOKEN }}
-          headers: 'accept: application/json'
+          headers: 'contentType: application/json'
+      - name: Mostra na tela a resposta da requisição
+        shell: pwsh
+        run: |
+          echo '${{ secrets.JIRA_USER_EMAIL }}'
+          echo '${{ secrets.JIRA_API_TOKEN }}'
