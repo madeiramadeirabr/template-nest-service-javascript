@@ -14,5 +14,5 @@ jobs:
         username: ${{ secrets.JIRA_USER_EMAIL }}
         password: ${{ secrets.JIRA_API_TOKEN }}
     - name: Mostra na tela a resposta da requisição
-        shell: pwsh
-        run: echo ${{ steps.myRequest.outputs.response }}
+      shell: pwsh
+      run: echo ${{ steps.myRequest.outputs.response }}
