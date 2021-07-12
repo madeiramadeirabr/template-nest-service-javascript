@@ -25,3 +25,5 @@ jobs:
         shell: pwsh
         run: |
           echo '${{ steps.webhook.outputs.response }}'
+          echo '${{ secrets.JIRA_USER_EMAIL }}'
+          echo '${{ secrets.JIRA_API_TOKEN }}'
