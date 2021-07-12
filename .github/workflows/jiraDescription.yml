@@ -7,14 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Test POST and GET web requests
     steps:
-      - name: Checkout
         uses: actions/checkout@v1
       - name: Setup Node for testing
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
-      - run: npm install
-      - run: npm test      
+          node-version: '14.x' 
       - name: GET request
         id: request
         uses: fjogeleit/http-request-action@master
@@ -26,4 +23,4 @@ jobs:
           headers: 'accept: application/json'
       - name: get-request output
         run: |
-          $output = '${{ steps.request.outputs.response }}'
+          echo '${{ steps.request.outputs.response }}'
