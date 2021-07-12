@@ -5,24 +5,14 @@ env:
 jobs:
   description_jira:
     runs-on: ubuntu-latest
-    name: Get description from jira task
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          node-version: '14.x'
-      - run: npm install
-      - name: Pega descrição da tarefa do jira
-        id: webhook
-        uses: fjogeleit/http-request-action@master
-        with:
-          url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
-          method: GET
-          username: ${{ secrets.JIRA_USER_EMAIL }}
-          password: ${{ secrets.JIRA_API_TOKEN }}
-          headers: 'contentType: application/json'
-      - name: Mostra na tela a resposta da requisição
+    - name: Pega descrição da tarefa do jira
+      uses: fjogeleit/http-request-action@master
+      with:
+        url: 'https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description'
+        method: 'GET'
+        username: ${{ secrets.JIRA_USER_EMAIL }}
+        password: ${{ secrets.JIRA_API_TOKEN }}
+    - name: Mostra na tela a resposta da requisição
         shell: pwsh
-        run: |
-          echo '${{ secrets.JIRA_USER_EMAIL }}'
-          echo '${{ secrets.JIRA_API_TOKEN }}'
+        run: echo ${{ steps.myRequest.outputs.response }}
