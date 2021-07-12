@@ -3,26 +3,23 @@ name: Test
 env:
   MY_NAME: testUser
 jobs:
-  webrequest_test:
+  description_jira:
     runs-on: ubuntu-latest
-    name: Test POST and GET web requests
+    name: Get description from jira task
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Setup Node for testing
-        uses: actions/setup-node@v1
         with:
           node-version: '14.x'
       - run: npm install
-      - run: npm test      
       - name: GET request
         id: webhook
         uses: fjogeleit/http-request-action@master
         with:
           url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
           method: GET
-          username: lucas.villatore@madeiramadeira.com.br
-          password: LvEljnzABWPclWB6ea7lC3E3
+          username: ${{ secrets.JIRA_USER_EMAIL }}
+          password: ${{ secrets.JIRA_API_TOKEN }}
           headers: 'accept: application/json'
       - name: get-request output
         shell: pwsh
