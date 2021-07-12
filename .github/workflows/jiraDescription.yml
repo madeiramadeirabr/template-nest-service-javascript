@@ -15,6 +15,5 @@ jobs:
         username: ${{ secrets.JIRA_USER_EMAIL }}
         password: ${{ secrets.JIRA_API_TOKEN }}
     - name: Mostra na tela a resposta da requisição
-      shell: bash
       run: |
         echo ${{steps.request.outputs.response.description}}
