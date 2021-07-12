@@ -17,4 +17,4 @@ jobs:
     - name: Mostra na tela a resposta da requisição
       shell: pwsh
       run: |
-        echo ${{ steps.request.outputs.response }}
+        echo ${{toJSON(steps.request.outputs.response) }}
