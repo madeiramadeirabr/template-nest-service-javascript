@@ -27,4 +27,4 @@ jobs:
         #shell: pwsh
         #echo JSON.parse('${{ steps.request.outputs.response }}')
         run: |
-          echo '${{ steps.request.outputs.response }}'
+          echo '${{ steps.request.outputs.response.fields.description }}'
