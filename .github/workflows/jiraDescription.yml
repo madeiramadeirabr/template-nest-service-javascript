@@ -24,4 +24,4 @@ jobs:
       - name: Mostra na tela a resposta da requisição
         shell: bash
         run: |
-          echo ${{steps.request.outputs.response}}
+          echo ${{steps.request.outputs}}
