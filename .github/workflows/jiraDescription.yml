@@ -22,7 +22,7 @@ jobs:
           method: GET
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
-      - name: Get Description
-        shell: bash
-        run: |
+      - name: Mostra na tela a resposta da requisição
+      shell: bash
+      run: |
         echo ${{steps.request.outputs.response.description}}
