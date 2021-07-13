@@ -16,15 +16,15 @@ jobs:
       - run: npm install
       - run: npm test      
       - name: GET request
-        id: get-request
+        id: request
         uses: satak/webrequest-action@master
         with:
           url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
           method: GET
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
-          headers: 'accept: application/json'
-      - name: get-request output
-        shell: pwsh
+      - name:
+        shell: bash
         run: |
-          $output = '${{ steps.webhook.outputs.output }}'
+        echo ${{steps.request.outputs.response.description}}
+   
