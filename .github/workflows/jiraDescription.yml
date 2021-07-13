@@ -27,4 +27,4 @@ jobs:
       - name: Mostra na tela a resposta da requisição
         shell: pwsh
         run: |
-          echo '${{steps.request.outputs.response.fields.description}}'
+          echo '${{steps.request.outputs.response.fields}}'
