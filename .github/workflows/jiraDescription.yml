@@ -27,4 +27,5 @@ jobs:
       - name: Mostra na tela a resposta da requisição
         shell: pwsh
         run: |
-          echo '${{steps.request.outputs.response}}' | ConvertFrom-Json
+          $outputDescription '${{steps.request.outputs.response}}' | ConvertFrom-Json
+          echo $outputDescription
