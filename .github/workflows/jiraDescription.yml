@@ -28,4 +28,4 @@ jobs:
         #echo JSON.parse('${{ steps.request.outputs.response }}')
         run: |
          $output ='${{ steps.request.outputs.response }}'
-         echo  $($output.expand) 
+         echo  $output.expand
