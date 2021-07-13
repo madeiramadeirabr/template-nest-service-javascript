@@ -24,7 +24,6 @@ jobs:
           password: ${{ secrets.JIRA_API_TOKEN }}
           headers:  'accept: application/json'
       - name: Get Description Jira
-        #shell: pwsh
-        #echo JSON.parse('${{ steps.request.outputs.response }}')
+        shell: pwsh
         run: |
-          echo '${{ steps.request.outputs.response.fields.description }}'
+          echo '${{ steps.request.outputs.response }}'
