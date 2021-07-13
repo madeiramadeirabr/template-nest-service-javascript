@@ -22,6 +22,6 @@ jobs:
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
       - name: Mostra na tela a resposta da requisição
-        shell: bash
+        shell: pwsh
         run: |
-          echo ${{steps.request.outputs.data}}
+          echo ${{steps.request.outputs.response}}
