@@ -15,7 +15,8 @@ jobs:
       - run: npm install      
       - name: GET request
         id: request
-        uses: satak/webrequest-action@master
+        #uses: satak/webrequest-action@master
+        uses: fjogeleit/http-request-action@master
         with:
           url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
           method: GET
