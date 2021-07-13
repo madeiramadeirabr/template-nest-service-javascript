@@ -27,4 +27,4 @@ jobs:
         shell: pwsh
         run: |
           echo '${{ steps.request.outputs.response }}' | ConvertFrom-Json'
-          Write-Host " data $($output.data) "
+          Write-Host " data $($output.fields) "
