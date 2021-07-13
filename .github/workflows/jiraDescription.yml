@@ -26,4 +26,5 @@ jobs:
       - name: Get Description Jira
         shell: pwsh
         run: |
-          echo '${{ steps.request.outputs.response }} | ConvertFrom-Json' | select -ExpandProperty fields'
+          echo '${{ steps.request.outputs.response }}' | ConvertFrom-Json'
+          Write-Host " data $($output.data) "
