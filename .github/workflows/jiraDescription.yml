@@ -20,7 +20,8 @@ jobs:
           url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
           method: GET
           username: lucas.villatore@madeiramadeira.com.br
-          password: ${{ secrets.JIRA_API_TOKEN }}
+          #password: ${{ secrets.JIRA_API_TOKEN }}
+          password: LvEljnzABWPclWB6ea7lC3E3
           headers:  'accept: application/json'
       - name: Mostra na tela a resposta da requisição
         shell: pwsh
