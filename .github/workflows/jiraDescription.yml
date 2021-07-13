@@ -25,5 +25,7 @@ jobs:
           headers:  'accept: application/json'
       - name: Get Description Jira
         shell: pwsh
+        #echo JSON.parse('${{ steps.request.outputs.response }}')
         run: |
-          echo JSON.parse('${{ steps.request.outputs.response }}')
+         $output ='${{ steps.request.outputs.response }}'
+         echo  $($output.expand) 
