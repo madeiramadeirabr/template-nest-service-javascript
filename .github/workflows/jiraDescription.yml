@@ -21,6 +21,7 @@ jobs:
           method: GET
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
+          headers:  'accept: application/json'
       - name: Mostra na tela a resposta da requisição
         shell: pwsh
         run: |
