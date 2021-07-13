@@ -14,7 +14,7 @@ jobs:
           node-version: '14.x'
       - run: npm install      
       - name: GET request
-        id: loki
+        id: request
         uses: satak/webrequest-action@master
         with:
           url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
@@ -24,4 +24,4 @@ jobs:
       - name: Mostra na tela a resposta da requisição
         shell: bash
         run: |
-          echo ${{steps.loki.outputs.response}}
+          echo ${{steps.request.outputs.data}}
