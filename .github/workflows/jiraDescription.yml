@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Setup Node for testing
-        uses: actions/setup-node@v1
+      #- name: Setup Node for testing
+      #  uses: actions/setup-node@v1
         with:
           node-version: '14.x'
       - run: npm install      
@@ -22,9 +22,8 @@ jobs:
           method: GET
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
-          #password: LvEljnzABWPclWB6ea7lC3E3
           headers:  'accept: application/json'
-      - name: Mostra na tela a resposta da requisição
+      - name: Get Description Jira
         shell: pwsh
         run: |
           $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
