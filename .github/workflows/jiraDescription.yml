@@ -26,6 +26,8 @@ jobs:
       - name: Get Description Jira
         shell: pwsh
         run: |
-          SUBSTRING=$(echo steps.request.outputs.response| cut -d':' -f 8)
+          $input= '${{ steps.request.outputs.response }}'
+          SUBSTRING=$(echo $input| cut -d':' -f 8)
           SUBSTRING=$(echo $SUBSTRING| cut -d'"' -f 2)
           echo $SUBSTRING
+          
