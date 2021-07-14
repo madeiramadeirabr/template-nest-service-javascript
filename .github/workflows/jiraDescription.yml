@@ -26,6 +26,6 @@ jobs:
       - name: Get Description Jira
         shell: pwsh
         run: |
-          echo '${{ steps.request.outputs.response }} > versions.json
+          echo '${{ steps.request.outputs.response }}' > versions.json
           
           
