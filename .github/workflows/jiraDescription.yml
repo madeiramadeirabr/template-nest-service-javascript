@@ -26,8 +26,7 @@ jobs:
       - name: Get Description Jira
         shell: pwsh
         run: |
-          $input= '${{ steps.request.outputs.response }}'
-          SUBSTRING=$(echo $input| cut -d':' -f 8)
-          SUBSTRING=$(echo $SUBSTRING| cut -d'"' -f 2)
-          echo $SUBSTRING
+          $input= '${{ steps.request.outputs.response }}
+          #!/bin/bash
+          $input| awk -F"description" '{print $2}'| awk -F\" '{print $3}'
           
