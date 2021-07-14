@@ -29,9 +29,9 @@ jobs:
           $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
           Write-Host $($output)
       - name: Gerar release
-            uses: fjogeleit/http-request-action@master
-            with:
-              url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
-              method: 'POST'
-              contentType: '{"tag_name": "pelo action povao","body": ${{ steps.request.outputs.response }}}'
-              bearerToken: 'Authentication token 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'
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
+          method: 'POST'
+          contentType: '{"tag_name": "pelo action povao","body": ${{ steps.request.outputs.response }}}'
+          bearerToken: 'Authentication token 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'
