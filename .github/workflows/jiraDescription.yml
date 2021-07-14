@@ -34,4 +34,4 @@ jobs:
           url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
           method: 'POST'
           contentType: '{"tag_name": "pelo action povao","body": ${{ steps.request.outputs.response }}}'
-          bearerToken: 'token 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'
+          bearerToken: 'token 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'
