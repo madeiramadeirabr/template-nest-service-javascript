@@ -1,6 +1,5 @@
 name: Set release notes from JiraSoftware
-on: 
-  ['push']:
+on: ['push']:
 jobs:
   release_notes:
     needs: build
