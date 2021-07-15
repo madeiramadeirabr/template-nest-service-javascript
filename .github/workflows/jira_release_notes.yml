@@ -1,10 +1,6 @@
 name: Set release notes from JiraSoftware
 on: 
-  push:
-    branches:
-      - main
-      - production
-      - master
+  ['push']:
 jobs:
   release_notes:
     needs: build
