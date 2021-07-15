@@ -25,7 +25,6 @@ jobs:
         run: |
           $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
           $description = $(echo $output | jq -r '.fields.description')
-          Write-Host $($output)jq
       - name: Generate release notes on GitHub
         uses: fjogeleit/http-request-action@master
         with:
