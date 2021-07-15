@@ -3,7 +3,7 @@
 #   pull_request:
 #     branches: [ production ]
 # jobs:
-#   test-transition-issue:
+#   transition-issue:
 #       name: Transition Issue
 #       runs-on: ubuntu-latest
 #       steps:

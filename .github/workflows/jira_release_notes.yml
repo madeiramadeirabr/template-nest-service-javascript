@@ -1,16 +1,15 @@
-on: [push]
-name: Test
-env:
-  MY_NAME: testUser
+name: Set release notes from JiraSoftware
+on: 
+  push:
+    branches:
+      - main
+      - production
+      - master
 jobs:
-  description_jira:
+  release_notes:
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          node-version: '14.x'
-      - run: npm install      
       - name: Get object from JiraSoftware
         id: request
         uses: fjogeleit/http-request-action@master
@@ -20,16 +19,17 @@ jobs:
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
           headers:  'accept: application/json'
-      - name: Get description from of task on JiraSoftware
+      - name: Get description from task on JiraSoftware
+        id: jira
         shell: pwsh
         run: |
-          $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
-          $description=$(echo $output | jq -r '.fields.description')
-          echo $description
+          $output = '${{ steps.request.outputs.response }}'
+          $description = $(echo $output | jq -r '.fields.description')
+          echo "::set-output name=DESCRIPTION::$description"
       - name: Generate release notes on GitHub
         uses: fjogeleit/http-request-action@master
         with:
           url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
           method: 'POST'
-          data: '{"tag_name": "release-1.0.1","body": "${{ steps.description }}"}'
+          data: '{"tag_name": "release-2.1.0","body": "${{steps.jira.outputs.DESCRIPTION}}"}'
           bearerToken: '${{ secrets.GIT_TOKEN }}'
