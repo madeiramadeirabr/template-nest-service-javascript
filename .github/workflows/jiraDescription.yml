@@ -32,12 +32,12 @@ jobs:
       #     method: 'POST'
       #     data: '{"tag_name": "release-1.0.1","body": "${{ steps.output }}"}'
       #     bearerToken: '${{ secrets.GIT_TOKEN }}'
-      - name: set output
-      id: set
-      run: |
-         echo ::set-output name=json_var::'[{ "name": "test", "client_payload": "111" }, { "name": "test2", "client_payload": "222" }] '
-      - name: use output
+        - name: set output
+        id: set
         run: |
-          echo $json_var | jq '.[].name'
-        env:
-          json_var: ${{ steps.set.outputs.json_var}}
+          echo ::set-output name=json_var::'[{ "name": "test", "client_payload": "111" }, { "name": "test2", "client_payload": "222" }] '
+        - name: use output
+          run: |
+            echo $json_var | jq '.[].name'
+          env:
+            json_var: ${{ steps.set.outputs.json_var}}
