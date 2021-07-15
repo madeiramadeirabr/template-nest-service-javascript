@@ -8,14 +8,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      #- name: Setup Node for testing
-      #  uses: actions/setup-node@v1
         with:
           node-version: '14.x'
       - run: npm install      
-      - name: GET request
+      - name: Get description from of task on JiraSoftware
         id: request
-        #uses: satak/webrequest-action@master
         uses: fjogeleit/http-request-action@master
         with:
           url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
@@ -28,10 +25,10 @@ jobs:
         run: |
           $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
           Write-Host $($output)
-      - name: Gerar release
+      - name: Generate release notes on GitHub
         uses: fjogeleit/http-request-action@master
         with:
           url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
           method: 'POST'
-          data: '{"tag_name": "release-1.0.1","body": "${{ steps.request.outputs.response }}"}'
+          data: '{"tag_name": "release-1.0.1","body": "${{ steps.output }}"}'
           bearerToken: '${{ secrets.GIT_TOKEN }}'
