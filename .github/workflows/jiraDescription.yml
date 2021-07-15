@@ -20,11 +20,10 @@ jobs:
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
           headers:  'accept: application/json'
-      # - name: Get Description Jira
-      #   shell: pwsh
-      #   run: |
-      #     $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
-      #     Write-Host $($output)
+      - name: Get Description Jira
+        shell: pwsh
+        run: |
+          $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
       # - name: Generate release notes on GitHub
       #   uses: fjogeleit/http-request-action@master
       #   with:
@@ -35,7 +34,7 @@ jobs:
       - name: set output
         id: set
         run: |
-          echo ::set-output name=json_var::'[{ "name": "test", "client_payload": "111" }, { "name": "test2", "client_payload": "222" }] '
+          echo ::set-output name=json_var::'${{ steps.request.outputs.response }}'
       - name: use output
         run: |
           echo $json_var | jq '.[].name'
