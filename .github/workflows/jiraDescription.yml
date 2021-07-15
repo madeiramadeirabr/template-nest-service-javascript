@@ -20,15 +20,24 @@ jobs:
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
           headers:  'accept: application/json'
-      - name: Get Description Jira
-        shell: pwsh
+      # - name: Get Description Jira
+      #   shell: pwsh
+      #   run: |
+      #     $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
+      #     Write-Host $($output)
+      # - name: Generate release notes on GitHub
+      #   uses: fjogeleit/http-request-action@master
+      #   with:
+      #     url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
+      #     method: 'POST'
+      #     data: '{"tag_name": "release-1.0.1","body": "${{ steps.output }}"}'
+      #     bearerToken: '${{ secrets.GIT_TOKEN }}'
+      - name: set output
+      id: set
+      run: |
+         echo ::set-output name=json_var::'[{ "name": "test", "client_payload": "111" }, { "name": "test2", "client_payload": "222" }] '
+      - name: use output
         run: |
-          $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
-          Write-Host $($output)
-      - name: Generate release notes on GitHub
-        uses: fjogeleit/http-request-action@master
-        with:
-          url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
-          method: 'POST'
-          data: '{"tag_name": "release-1.0.1","body": "${{ steps.output }}"}'
-          bearerToken: '${{ secrets.GIT_TOKEN }}'
+          echo $json_var | jq '.[].name'
+        env:
+          json_var: ${{ steps.set.outputs.json_var}}
