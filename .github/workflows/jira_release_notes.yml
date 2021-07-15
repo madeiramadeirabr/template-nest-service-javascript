@@ -2,7 +2,6 @@ name: Set release notes from JiraSoftware
 on: [push]
 jobs:
   release_notes:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Get object from JiraSoftware
