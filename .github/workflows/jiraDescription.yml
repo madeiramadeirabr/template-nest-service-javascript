@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: '14.x'
       - run: npm install      
-      - name: Get description from of task on JiraSoftware
+      - name: Get object from JiraSoftware
         id: request
         uses: fjogeleit/http-request-action@master
         with:
@@ -20,24 +20,16 @@ jobs:
           username: lucas.villatore@madeiramadeira.com.br
           password: ${{ secrets.JIRA_API_TOKEN }}
           headers:  'accept: application/json'
-      # - name: Get Description Jira
-      #   shell: pwsh
-      #   run: |
-      #     $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
-      #     Write-Host $($output)
-      # - name: Generate release notes on GitHub
-      #   uses: fjogeleit/http-request-action@master
-      #   with:
-      #     url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
-      #     method: 'POST'
-      #     data: '{"tag_name": "release-1.0.1","body": "${{ steps.output }}"}'
-      #     bearerToken: '${{ secrets.GIT_TOKEN }}'
-      - name: set output
-        id: set
+      - name: Get description from of task on JiraSoftware
+        shell: pwsh
         run: |
-          echo ::set-output name=json_var::'${{ steps.request.outputs.response }}'
-      - name: use output
-        run: |
-          echo $json_var | jq '.[]'
-        env:
-          json_var: ${{ steps.set.outputs.json_var}}
+          $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
+          $description = $(echo $output | jq -r '.fields.description')
+          Write-Host $($output)jq
+      - name: Generate release notes on GitHub
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
+          method: 'POST'
+          data: '{"tag_name": "release-1.0.1","body": "${{ steps.description }}"}'
+          bearerToken: '${{ secrets.GIT_TOKEN }}'
