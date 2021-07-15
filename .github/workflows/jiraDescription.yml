@@ -24,7 +24,8 @@ jobs:
         shell: pwsh
         run: |
           $output = '${{ steps.request.outputs.response }}' | ConvertFrom-Json
-          $description = $(echo $output | jq -r '.fields.description')
+          $description=$(echo $output | jq -r '.fields.description')
+          echo $description
       - name: Generate release notes on GitHub
         uses: fjogeleit/http-request-action@master
         with:
