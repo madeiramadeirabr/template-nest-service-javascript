@@ -29,10 +29,10 @@ jobs:
           echo $json_var | jq '.fields.description'
         env:
           json_var: ${{ steps.set.outputs.json_var}}
-      - name: Generate release notes on GitHub
-        uses: fjogeleit/http-request-action@master
-        with:
-          url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
-          method: 'POST'
-          data: '{"tag_name": "release-1.0.5","body": ${{ steps.set.outputs.json_var}}}'
-          bearerToken: '${{ secrets.GIT_TOKEN }}'
+      # - name: Generate release notes on GitHub
+      #   uses: fjogeleit/http-request-action@master
+      #   with:
+      #     url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
+      #     method: 'POST'
+      #     data: '{"tag_name": "release-1.0.5","body": ${{ steps.set.outputs.json_var}}}'
+      #     bearerToken: '${{ secrets.GIT_TOKEN }}'
