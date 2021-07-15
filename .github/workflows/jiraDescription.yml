@@ -28,7 +28,7 @@ jobs:
         run: |
           echo $json_var | jq '.fields.description'
         env:
-          json_var: ${{ steps.set.outputs.json_var}}
+          # json_var: ${{ steps.set.outputs.json_var}}
       # - name: Generate release notes on GitHub
       #   uses: fjogeleit/http-request-action@master
       #   with:
