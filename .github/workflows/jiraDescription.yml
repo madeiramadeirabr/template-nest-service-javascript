@@ -35,9 +35,9 @@ jobs:
       - name: set output
         id: set
         run: |
-          echo ::set-output name=json_var::'[{ "bola": "test", "client_payload": "111" }, { "bola": "test2", "client_payload": "222" }] '
+          echo ::set-output name=json_var::'${{ steps.request.outputs.response }}'
       - name: use output
         run: |
-          echo $json_var | jq '.[].bola'
+          echo $json_var | jq '.[]'
         env:
           json_var: ${{ steps.set.outputs.json_var}}
