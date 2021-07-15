@@ -33,5 +33,5 @@ jobs:
         with:
           url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
           method: 'POST'
-          data: '{"tag_name": "pelo action povao","body": "oiie action"}'
+          data: '{"tag_name": "release-1.0.0","body": "the greatest ox of sre team! yago boi"}'
           bearerToken: '${{ secrets.GIT_TOKEN }}'
