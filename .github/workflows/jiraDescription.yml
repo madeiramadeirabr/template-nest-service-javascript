@@ -38,6 +38,6 @@ jobs:
           echo ::set-output name=json_var::'${{ steps.request.outputs.response }}'
       - name: use output
         run: |
-          echo $json_var | jq '.fields'
+          echo $json_var | jq '.fields.description'
         env:
           json_var: ${{ steps.set.outputs.json_var}}
