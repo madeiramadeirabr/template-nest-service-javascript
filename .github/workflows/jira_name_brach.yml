@@ -2,7 +2,7 @@ name: Jira CI
 on: [push]
 jobs:
   transition-issue:
-      name: Transition Issue
+      name: Branch Issue
       runs-on: ubuntu-latest
       steps:
       - name: Extract branch name
