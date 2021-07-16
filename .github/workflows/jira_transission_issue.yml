@@ -1,31 +1,32 @@
-name: Jira CI
-on: [push]
-jobs:
-  transition-issue:
-      name: Transition Issue
-      runs-on: ubuntu-latest
-      steps:
-      - name: Extract branch name
-        run: echo "##[set-output name=branch;]$(echo ${{github.event.pull_request.head.ref}} | awk -F/ '{print $NF}')"
-        shell: bash
-        id: extract_branch
-          '${{ steps.extract_branch.outputs.branch }}'
-      # - if: '${{ steps.extract_branch.outputs.branch }} =~ /[a-zA-Z]+\-[0-9]+/'
-      # - when: on_success
-      # - name: Login
-      #   uses: atlassian/gajira-login@master
-      #   env:
-      #     JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-      #     JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-      #     JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-      #     branch_name: ${{github.event.pull_request.head.ref}} 
-      # - name: Comment on issue
-      #   uses: atlassian/gajira-comment@master
-      #   with:
-      #     issue: ${{ steps.extract_branch.outputs.branch }}
-      #     comment: ${{secrets.JIRA_COMMENT_DONE}}
-      # - name: Transition issue
-      #   uses: atlassian/gajira-transition@master
-      #   with:
-      #     issue: ${{ steps.extract_branch.outputs.branch }}
-      #     transition: ${{secrets.JIRA_STEP_DONE}}
+# name: Jira CI
+# on:
+#   pull_request:
+#     branches: [ production ]
+# jobs:
+#   transition-issue:
+#       name: Transition Issue
+#       runs-on: ubuntu-latest
+#       steps:
+#       - name: Extract branch name
+#         run: echo "##[set-output name=branch;]$(echo ${{github.event.pull_request.head.ref}} | awk -F/ '{print $NF}')"
+#         shell: bash
+#         id: extract_branch
+#       - if: '${{ steps.extract_branch.outputs.branch }} =~ /[a-zA-Z]+\-[0-9]+/'
+#       - when: on_success
+#       - name: Login
+#         uses: atlassian/gajira-login@master
+#         env:
+#           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+#           JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+#           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+#           branch_name: ${{github.event.pull_request.head.ref}} 
+#       - name: Comment on issue
+#         uses: atlassian/gajira-comment@master
+#         with:
+#           issue: ${{ steps.extract_branch.outputs.branch }}
+#           comment: ${{secrets.JIRA_COMMENT_DONE}}
+#       - name: Transition issue
+#         uses: atlassian/gajira-transition@master
+#         with:
+#           issue: ${{ steps.extract_branch.outputs.branch }}
+#           transition: ${{secrets.JIRA_STEP_DONE}}
