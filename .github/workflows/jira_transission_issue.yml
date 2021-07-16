@@ -1,7 +1,5 @@
 name: Jira CI
-on:
-  pull_request:
-    branches: [ production ]
+on: [push]
 jobs:
   transition-issue:
       name: Transition Issue
