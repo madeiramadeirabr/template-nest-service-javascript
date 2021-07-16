@@ -8,7 +8,6 @@ jobs:
       - name: Extract branch name
         run: echo "##[set-output name=branch;]$(echo ${{github.event.pull_request.head.ref}} | awk -F/ '{print $NF}')"
         shell: bash
-        id: extract_branch
           echo 'teste'
       # - if: '${{ steps.extract_branch.outputs.branch }} =~ /[a-zA-Z]+\-[0-9]+/'
       # - when: on_success
