@@ -11,6 +11,13 @@ jobs:
         id: get_branch_name
       - name: teste
         run: echo ${{ steps.get_branch_name.outputs.branch }}
+  log-github-event-goodies:
+    name: "LOG Everything on GitHub Event"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Logging
+        run: |
+          echo "${{toJSON(github.event)}}"      
 
       # - when: on_success
       # - name: Login
