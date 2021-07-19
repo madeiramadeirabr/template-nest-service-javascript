@@ -6,7 +6,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: Extract branch name
-        run: echo "##[set-output name=branch;]$(echo ${{github.event.push.ref}} | awk -F/ '{print $NF}')"
+        run: echo "##[set-output name=branch;]$(echo ${{github.event.push}} | awk -F/ '{print $NF}')"
         shell: bash
         id: get_branch_name
       - name: teste
