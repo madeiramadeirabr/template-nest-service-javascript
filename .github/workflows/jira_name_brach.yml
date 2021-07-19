@@ -1,23 +1,22 @@
 name: Jira CI
-on: [push]
-jobs:
+on: 
+  push:
+    branches:
+      - main
+      - production
+      - master
+      - feature/github-actions-config
+jobs:  
   transition-issue:
-      name: Branch Issue
-      runs-on: ubuntu-latest
-      steps:
-      - name: Extract branch name
-        run: echo "##[set-output name=branch;]$(echo ${{github.event}} | awk -F/ '{print $NF}')"
-        shell: bash
-        id: get_branch_name
-      - name: teste
-        run: echo '${{ toJSON(steps.get_branch_name) }}'
-  log-github-event-goodies:
-    name: "LOG Everything on GitHub Event"
+    name: Branch Issue
     runs-on: ubuntu-latest
     steps:
-      - name: Logging
-        run: |
-          echo "${{toJSON(github.event)}}"      
+    - name: Extract branch name
+      run: echo "##[set-output name=branch;]$(echo ${{github.event.ref}} | awk -F/ '{print $NF}')"
+      shell: bash
+      id: get_branch_name
+    - name: teste
+      run: echo ${{ steps.get_branch_name.outputs.branch }}  
 
       # - when: on_success
       # - name: Login
