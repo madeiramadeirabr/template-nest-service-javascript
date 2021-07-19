@@ -6,10 +6,11 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: Extract branch name
-        run: echo "##[set-output name=branch;]$(echo ${{github.event.push}} | awk -F/ '{print $NF}')"
+        run: echo "##[set-output name=branch;]$(echo ${{github.event.push.head.ref}} | awk -F/ '{print $NF}')"
         shell: bash
-          echo 'teste'
-      # - if: '${{ steps.extract_branch.outputs.branch }} =~ /[a-zA-Z]+\-[0-9]+/'
+        id: get_branch_name
+          echo '${{ steps.get_branch_name.outputs.branch }}'
+
       # - when: on_success
       # - name: Login
       #   uses: atlassian/gajira-login@master
