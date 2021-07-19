@@ -10,7 +10,7 @@ jobs:
         shell: bash
         id: get_branch_name
       - name: teste
-        run: echo ${{ steps.get_branch_name.outputs.branc h }}
+        run: echo '${{ steps.get_branch_name.outputs.branch }}'
   log-github-event-goodies:
     name: "LOG Everything on GitHub Event"
     runs-on: ubuntu-latest
