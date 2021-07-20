@@ -19,3 +19,5 @@ jobs:
     - name: teste
       #echo ${{ steps.get_branch_name.outputs.branch }}
       run: echo  echo ${{ steps.get_branch_name.outputs.branch }} | awk '{split($0,a,"_"); print a[1]}'
+    - name: Extract id jira task
+      run: echo "##[set-output name=jira_task;]$(echo ${{steps.get_branch_name.outputs.branch }} | awk '{split($0,a,"_"); print a[1]}')"
