@@ -24,4 +24,4 @@ jobs:
       shell: bash
       id: get_id_jira_task_name
     - name: get_id_jira_task_name
-      run:   echo ${{ toJSON(steps.get_id_jira_task_name) }}
+      run:   echo ${{ steps.get_id_jira_task_name }}
