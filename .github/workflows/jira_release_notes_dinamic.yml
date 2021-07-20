@@ -16,9 +16,9 @@ jobs:
       run: echo "##[set-output name=branch;]$(echo ${{github.event.ref}} | awk -F/ '{print $NF}')"
       shell: bash
       id: get_branch_name
-    - name: teste
-      #echo ${{ steps.get_branch_name.outputs.branch }}
-      run:   echo ${{ steps.get_branch_name.outputs.branch }} | awk '{split($0,a,"_"); print a[1]}'
+    # - name: teste
+    #   #echo ${{ steps.get_branch_name.outputs.branch }}
+    #   run:   echo ${{ steps.get_branch_name.outputs.branch }} | awk '{split($0,a,"_"); print a[1]}'
     - name: Extract id jira task
       run: echo "##[set-output name=jira_task;]$(echo ${{steps.get_branch_name.outputs.branch }} | awk '{split($0,a,"_"); print a[1]}')"
       shell: bash
