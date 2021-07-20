@@ -21,7 +21,7 @@ jobs:
       shell: bash
       id: get_id_jira_task_name
     - name: get_id_jira_task_name
-      run:   echo '${{ toJSON(steps.get_id_jira_task_name.outputs.jira_task) }}'
+      run:   echo ' LAST ${{ toJSON(steps.get_id_jira_task_name.outputs.jira_task) }}'
     - name: Get object from JiraSoftware
       id: request
       uses: fjogeleit/http-request-action@master
