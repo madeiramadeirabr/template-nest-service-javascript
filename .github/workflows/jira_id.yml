@@ -1,0 +1,16 @@
+name: Jira ID
+on:
+  pull_request:
+    branches: [ production ]
+jobs:
+  log-github-event-goodies:
+    name: "LOG Everything on GitHub Event"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Logging
+        env:
+          branch_name: ${{github.event.pull_request.head.ref}} 
+        run: |
+          echo "${{github.event.pull_request.base.user.login}}"
+          echo "${{toJSON(github.event)}}"
+          echo "${{env.branch_name}}"
