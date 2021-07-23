@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './app/app.module';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { Logger } from '@nestjs/common';
 import { grpcClientOptions, grpcPort } from './grpc-client.options';
