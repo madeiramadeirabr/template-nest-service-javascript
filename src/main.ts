@@ -4,6 +4,7 @@ import { MicroserviceOptions } from '@nestjs/microservices';
 import { Logger } from '@nestjs/common';
 import { grpcClientOptions, grpcPort } from './grpc-client.options';
 import SwaggerSpec from './openapi/spec';
+import { ResponseInterceptor } from './app/response.interceptor';
 
 const logger = new Logger('Main');
 
@@ -26,6 +27,8 @@ const bootstrap = async () => {
   process.env.REST_PORT = restPort.toString();
   process.env.GRPC_PORT = grpcPort.toString();
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
+  app.useGlobalInterceptors(new ResponseInterceptor());
   app.connectMicroservice<MicroserviceOptions>(grpcClientOptions);
   // swagger
   SwaggerSpec.generateDocs(app);
