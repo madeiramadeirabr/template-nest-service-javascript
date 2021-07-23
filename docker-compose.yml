@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  health:
+  nest-service:
     build:
       context: .
       dockerfile: docker/node/Dockerfile
@@ -10,3 +10,25 @@ services:
     ports:
       - 5000:5000
       - 3001:3001
+    networks:
+      - default
+#  localstack:
+#    image: localstack/localstack
+#    privileged: true
+#    ports:
+#      - "4566:4566"
+#      - "4567-4582:4567-4582"
+#      - "9070:9070"
+#      - "8080:8080"
+#    environment:
+#      SERVICES: sqs,lambda,cloudwatch
+#      DOCKER_HOST: unix:///var/run/docker.sock
+#      PORT_WEB_UI: 9070
+#      LAMBDA_EXECUTOR: docker
+#      DEBUG: 1
+#      HOSTNAME_EXTERNAL: localstack
+#    networks:
+#      - default
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - /tmp/localstack:/tmp/localstack
