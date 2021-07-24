@@ -3,8 +3,8 @@ import { AppModule } from './app/app.module';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { Logger } from '@nestjs/common';
 import { grpcClientOptions, grpcPort } from './grpc-client.options';
-import SwaggerSpec from './openapi/spec';
 import { ResponseInterceptor } from './app/response.interceptor';
+import SwaggerSpec from './openapi';
 
 const logger = new Logger('Main');
 

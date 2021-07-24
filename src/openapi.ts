@@ -1,5 +1,5 @@
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { APP_NAME, APP_VERSION } from '../main';
+import { APP_NAME, APP_VERSION } from './main';
 
 /**
  * @see https://docs.nestjs.com/openapi/introduction
