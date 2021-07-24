@@ -109,8 +109,12 @@ See: [https://martinfowler.com/articles/microservice-testing/#testing-progress-3
   queues, nosql databases and relational databases;
 - Integration tests - Validation of integration with staging enviroment (write and read operations only).
 
-### Diagram ot exemplify the general idea
+### Diagram to exemplify the general idea
 ![Test Strategies](docs/test-strategies.png)
+
+## Customizing tests details
+To Obtain info about Jest coverage configuration look [here](https://jestjs.io/pt-BR/docs/configuration#coveragereporters-arraystring--string-options).
+to get some information about ReportOptions look [here](https://use-form.netlify.app/interfaces/_node_modules__types_istanbul_reports_index_d_.reportoptions.html). 
 
 ## Running test
 To run the unit tests of the project you can execute the follow command:
