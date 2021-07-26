@@ -1,5 +1,7 @@
-name: Gerar logs do Github Event
-on: [push]
+name: Gerar logs
+on: 
+  pull_request:
+    branches: [ production ]
 jobs:
   log-on-github:
     name: "LOG Everything on GitHub Event"
