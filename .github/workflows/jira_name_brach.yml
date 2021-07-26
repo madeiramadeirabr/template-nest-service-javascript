@@ -1,4 +1,4 @@
-name: Jira CI
+name: Teste workflow pegar nome branch
 on: 
   push:
     branches:
