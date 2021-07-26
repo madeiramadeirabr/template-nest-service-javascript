@@ -15,7 +15,7 @@
 #     - run: npm ci #Restore: github action (yaml)
 #     - run: npm run build --if-present #Build: github action (yaml)
 
-#   test: 
+#   teste-unitario: 
 #     needs: build
 #     name: Npm test & coverage
 #     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@
   #         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}  
   #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
  
-  # slackNotification:
+  # notificacao-slack:
   #   name: Slack Notification
   #   runs-on: ubuntu-latest
   #   steps:
@@ -60,18 +60,3 @@
   #     env:
   #       SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
   #       SLACK_MESSAGE: ${{github.event.pull_request.user.login}} opened a PR "${{github.event.pull_request.title}}" on branch "${{github.event.pull_request.head.ref}}"
-  
-  # jiraDescription:
-  #   name: Jira Description
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Jira Description
-  #   - uses: satak/webrequest-action@master    
-  #   - with:
-  #       url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
-  #       method: GET
-  #       headers: '{"Authentication": "Token ${{ secrets.JIRA_API_TOKEN }}"}'
-  #   - run: |
-  #       $output = '${{ steps.webhook.outputs.output }}' | ConvertFrom-Json
-  #       Write-Host "Time from output $($output.time) statusCode $($output.statusCode) data $($output.data)"

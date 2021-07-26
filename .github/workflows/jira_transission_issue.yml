@@ -7,7 +7,7 @@
 #       name: Transition Issue
 #       runs-on: ubuntu-latest
 #       steps:
-#       - name: Extract branch name
+#       - name: Extract branch name and set to output name=branch
 #         run: echo "##[set-output name=branch;]$(echo ${{github.event.pull_request.head.ref}} | awk -F/ '{print $NF}')"
 #         shell: bash
 #         id: extract_branch

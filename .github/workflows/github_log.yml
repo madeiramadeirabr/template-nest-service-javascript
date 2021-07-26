@@ -1,0 +1,18 @@
+name: Gerar logs do Github Event
+on: 
+  pull_request:
+    branches:
+      - main
+      - master
+      - production
+jobs:
+  log-on-github:
+    name: "LOG Everything on GitHub Event"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Logging
+        env:
+          branch_name: ${{github.event.pull_request.head.ref}} 
+        run: |
+          echo "${{toJSON(github.event)}}"
+          echo "${{env.branch_name}}"

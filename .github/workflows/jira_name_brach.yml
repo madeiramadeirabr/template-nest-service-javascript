@@ -15,5 +15,5 @@ jobs:
       run: echo "##[set-output name=branch;]$(echo ${{github.event.ref}} | awk -F/ '{print $NF}')"
       shell: bash
       id: get_branch_name
-    - name: teste
+    - name: Echo branch name
       run: echo ${{ steps.get_branch_name.outputs.branch }}  
