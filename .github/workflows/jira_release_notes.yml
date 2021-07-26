@@ -11,7 +11,7 @@ jobs:
         # Pegamos o nome dinamico ele está no arquivo jira_name_branch.yml, agora só precisamos pegar a descrição dinamicamente
           url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
           method: GET
-          username: lucas.villatore@madeiramadeira.com.br
+          username: ${{ secrets.JIRA_USER_EMAIL}}
           password: ${{ secrets.JIRA_API_TOKEN }}
           headers:  'accept: application/json'
       - name: Get description from task on JiraSoftware
@@ -26,5 +26,5 @@ jobs:
         with:
           url: 'https://api.github.com/repos/lucasvillatore/git-actions-code-dojo/releases'
           method: 'POST'
-          data: '{"tag_name": "release-2.1.0","body": "${{steps.jira.outputs.DESCRIPTION}}"}'
+          data: '{"tag_name": "release-2.1.1","body": "${{steps.jira.outputs.DESCRIPTION}}"}'
           bearerToken: '${{ secrets.GIT_TOKEN }}'
