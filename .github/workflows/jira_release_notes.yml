@@ -11,7 +11,7 @@ jobs:
         # Pegamos o nome dinamico ele está no arquivo jira_name_branch.yml, agora só precisamos pegar a descrição dinamicamente
           url: https://madeiramadeira.atlassian.net/rest/api/2/issue/SRE-310?fields=description
           method: GET
-          username: lucas.villatore@madeiramadeira.com.br
+          username: ${{ secrets.JIRA_USER_EMAIL}}
           password: ${{ secrets.JIRA_API_TOKEN }}
           headers:  'accept: application/json'
       - name: Get description from task on JiraSoftware
