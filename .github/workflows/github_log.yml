@@ -1,4 +1,4 @@
-name: Gerar logs github actions
+name: Gerar logs github actions 
 on: 
   pull_request:
     branches: [ production ]
