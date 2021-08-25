@@ -7,7 +7,6 @@
   "license": "UNLICENSED",
   "scripts": {
     "prepare": "husky install",
-    "pre-commit": "lint-staged",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
