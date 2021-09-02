@@ -22,15 +22,6 @@ jobs:
     name: Npm test & coverage
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
-    - run: npm ci #Restore: github action (yaml)
-    - run: npm run coverage #Test: github action (yaml *w/ output file)
-    - name: Archive code coverage results
-      uses: actions/upload-artifact@v1
-      with:
-        name: code-coverage-report
-        path: coverage
+    - uses: actions/checkout@v1
+    - name: Run Jest
+      uses: stefanoeb/jest-action@1.0.3
