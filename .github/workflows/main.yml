@@ -36,3 +36,20 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: npm install && npm run coverage
+
+  sonarcloud:
+    needs: coverage
+    name: Sonarcloud scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v1
+        with:
+          name: code-coverage-report
+          path: coverage
+      - uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}  
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
