@@ -14,12 +14,13 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 14.x
-    - run: npm ci #Restore: github action (yaml)
-    - run: npm run build --if-present #Build: github action (yaml)
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
 
   teste-unitario: 
     needs: build
-    name: Npm test & coverage
+    name: Npm unitary
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
