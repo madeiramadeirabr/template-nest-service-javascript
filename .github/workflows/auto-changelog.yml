@@ -15,10 +15,10 @@ jobs:
           fetch-depth: 0 
 
       - name: dependencys
-        run: npm install
+        run: yarn install
 
       - name: install auto-changelog
-        run: npm install auto-changelog --save-dev
+        run: yarn auto-changelog --dev
 
       - name: generate changelog
         run: yarn auto-changelog -p
