@@ -18,7 +18,7 @@ jobs:
         run: yarn install
 
       - name: install auto-changelog
-        run: yarn auto-changelog --dev
+        run: yarn add auto-changelog --dev
 
       - name: generate changelog
         run: yarn auto-changelog -p
