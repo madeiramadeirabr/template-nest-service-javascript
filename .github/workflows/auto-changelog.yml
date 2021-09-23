@@ -21,7 +21,7 @@ jobs:
         run: npm install auto-changelog --save-dev
 
       - name: generate changelog
-        run: npm run auto-changelog -p
+        run: auto-changelog -p
       
       - name: write changelog on CHANGELOG.md
         run: echo "${{ steps.release.outputs.changelog }}"  >> CHANGELOG.md
