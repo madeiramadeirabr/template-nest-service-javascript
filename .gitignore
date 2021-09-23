@@ -37,3 +37,4 @@ lerna-debug.log*
 # Env file
 .env
 .husky/
+yarn.lock
