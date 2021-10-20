@@ -4,7 +4,7 @@ import {
   HttpException,
   ArgumentsHost,
   HttpStatus,
-  Logger
+  Logger,
 } from '@nestjs/common';
 import { ServiceException } from '../entities/service-exception';
 import * as utils from '../utils';
@@ -52,11 +52,11 @@ export class GeneralErrorFilter implements ExceptionFilter {
             const message = rest.join(' ');
 
             const addNewItemToStack = stack.every((stackItem) => {
-              if (stackItem.field === field) {                 
+              if (stackItem.field === field) {
                 stackItem.messages.push(message);
-                return false
+                return false;
               }
-              return true
+              return true;
             });
 
             if (addNewItemToStack) {
@@ -65,7 +65,7 @@ export class GeneralErrorFilter implements ExceptionFilter {
                 messages: [message],
               });
             }
-            
+
             return stack;
           },
           [],
