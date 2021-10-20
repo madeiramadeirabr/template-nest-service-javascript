@@ -51,20 +51,21 @@ export class GeneralErrorFilter implements ExceptionFilter {
             const [field, ...rest] = current.split(' ');
             const message = rest.join(' ');
 
-            let addNewItemToStack = true;
-
-            stack.forEach((stackItem) => {
-              if (stackItem.field === field) {
-                addNewItemToStack = false;
+            const addNewItemToStack = stack.every((stackItem) => {
+              if (stackItem.field === field) {                 
                 stackItem.messages.push(message);
+                return false
               }
+              return true
             });
+
             if (addNewItemToStack) {
               stack.push({
                 field: field,
                 messages: [message],
               });
             }
+            
             return stack;
           },
           [],
