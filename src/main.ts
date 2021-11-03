@@ -9,6 +9,7 @@ const logger = new Logger('Main');
 
 const bootstrap = async () => {
   const restPort = 3001;
+  
   process.env.REST_PORT = restPort.toString();
   process.env.GRPC_PORT = grpcPort.toString();
   const app = await NestFactory.create(AppModule);
