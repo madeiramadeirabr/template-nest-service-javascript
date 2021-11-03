@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: foo
-        uses: archaic10/check-status-service-desk@v5
+        uses: archaic10/check-status-service-desk@v6
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           path-file: 'gmud.json'
