@@ -7,7 +7,7 @@ on:
  
 jobs:
   check-status-service-desk:
-  runs-on: [self-hosted]
+  runs-on: ubuntu-latest
   name: check status service desk
   steps:
     - uses: actions/checkout@v2
