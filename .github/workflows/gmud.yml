@@ -17,6 +17,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         path_file: 'gmud.json'
         url-jira:'https://madeiramadeira.atlassian.net/rest/servicedeskapi/request/PTECH-'
-        basic-auth:'${{ secrets.BASIC_AUTH_JIRA }}'
+        basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
     - name: Get the output foo
       run: echo "The time was ${{ steps.foo.outputs.result }}"
