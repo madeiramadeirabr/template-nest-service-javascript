@@ -15,7 +15,7 @@ jobs:
       uses: archaic10/check-status-service-desk@v1
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        path_file: 'apps.js'
+        path_file: 'gmud.json'
         url-jira:'https://madeiramadeira.atlassian.net/rest/servicedeskapi/request/PTECH-'
         basic-auth:'${{ secrets.BASIC_AUTH_JIRA }}'
     - name: Get the output foo
