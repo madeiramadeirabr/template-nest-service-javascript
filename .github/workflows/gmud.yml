@@ -16,7 +16,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           path-file: 'gmud.json'
-          url-jira: 'https://madeiramadeira.atlassian.net/rest/servicedeskapi/request/PTECH-'
+          url-jira: 'https://madeiramadeira.atlassian.net/rest/servicedeskapi/request/CDO-'
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
       - name: Get the output foo
         run: echo "The time was ${{ steps.foo.outputs.result }}"
