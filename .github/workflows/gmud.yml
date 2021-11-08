@@ -28,7 +28,7 @@ jobs:
 
           }
           ' | jq -r '.data._links.web')
-          echo"::set-output name=GMUD::${data}"
+          echo "::set-output name=GMUD::${data}"
       - name: 'GET STATUS GMUD'
         run: | 
           echo "result ${{ steps.res.outputs.GMUD }} "
