@@ -37,7 +37,6 @@ jobs:
         uses: archaic10/check-status-service-desk@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          path-file: 'gmud.json'
           url-jira:  ${{ steps.res.outputs.GMUD }}
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
       - name: Get the output foo
