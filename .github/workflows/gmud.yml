@@ -38,7 +38,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           path-file: 'gmud.json'
-          url-jira: echo ${{ steps.res.outputs.GMUD }}
+          url-jira:  ${{ steps.res.outputs.GMUD }}
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
       - name: Get the output foo
         run: echo "${{ steps.foo.outputs.result }}"
