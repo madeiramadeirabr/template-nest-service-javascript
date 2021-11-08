@@ -12,11 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: foo
-        uses: archaic10/check-status-service-desk@v1
+        uses: archaic10/check-status-service-desk@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           path-file: 'gmud.json'
-          url-jira: 'https://madeiramadeira.atlassian.net/rest/servicedeskapi/request/CDO-'
+          url-jira: 'https://madeiramadeira.atlassian.net/rest/servicedeskapi/request/CDO-5344'
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
       - name: Get the output foo
         run: echo "The time was ${{ steps.foo.outputs.result }}"
