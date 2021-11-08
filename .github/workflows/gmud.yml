@@ -25,7 +25,9 @@ jobs:
               "business_approval": "bruno.oliveira@madeiramadeira.com.br"
           }
           ' | jq -r '.data._links.web')
-          echo "::set-output name=GMUD::${data}"
+          IFS='/'
+          read -ra ADDR <<< "$data"          
+          echo "::set-output name=GMUD::https://madeiramadeira.atlassian.net/rest/servicedeskapi/request/${ADDR[${#ADDR[@]}-1]}"        
           
       - name: 'check status GMUD'
         run: echo ${{ steps.res.outputs.GMUD }}
@@ -35,7 +37,7 @@ jobs:
         uses: archaic10/check-status-service-desk@v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          url-jira: echo ${{ steps.res.outputs.GMUD }}
+          url-jira:  ${{ steps.res.outputs.GMUD }}
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
       - name: Get the output foo
         run: echo "${{ steps.foo.outputs.result }}"
