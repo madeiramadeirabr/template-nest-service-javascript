@@ -29,4 +29,5 @@ jobs:
           }
           ' | jq -r '.data._links.web')                 
       - name: 'GET STATUS GMUD'
-        run: echo "$data"
+        run: | 
+          echo "$data"
