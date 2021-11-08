@@ -7,7 +7,7 @@ on:
  
 jobs:
   check-status-service-desk:
-    runs-on: [self-hosted]
+    runs-on: [production]
     name: check status service desk
     steps:
       - name: 'Create GMUD'
