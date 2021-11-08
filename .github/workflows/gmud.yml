@@ -26,5 +26,5 @@ jobs:
               "business_approval": "bruno.oliveira@madeiramadeira.com.br"
 
           }
-          ' | jq -r '._links.web')
+          ' | jq -r '.data._links.web')
           echo "$response"
