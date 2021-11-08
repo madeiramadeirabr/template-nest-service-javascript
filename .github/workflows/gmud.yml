@@ -11,8 +11,9 @@ jobs:
     name: check status service desk
     steps:
       - name: 'Create GMUD'
+        id: res
         run: |
-          response=$(curl --location --request POST 'http://kong-wallarm.redekasa.com/slifer/v1/gmud' \
+          data=$(curl --location --request POST 'http://kong-wallarm.redekasa.com/slifer/v1/gmud' \
           --header "Authorization: ${{ secrets.BASIC_AUTH_JIRA }}" \
           --header 'Content-Type: application/json' \
           --data-raw '{
@@ -27,4 +28,6 @@ jobs:
 
           }
           ' | jq -r '.data._links.web')
-          echo "$response"
+          Write-Output "::set-output name=GMUD::$data"
+      - name: 'GET STATUS GMUD'
+        run: echo "${{steps.res.output.GMUD}}"
