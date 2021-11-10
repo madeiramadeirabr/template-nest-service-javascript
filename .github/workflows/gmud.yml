@@ -7,7 +7,7 @@ on:
  
 jobs:
   check-status-service-desk:
-    runs-on: [production]
+    runs-on: ubuntu-latest
     name: check status service desk
     steps:
       - name: 'Create GMUD'
