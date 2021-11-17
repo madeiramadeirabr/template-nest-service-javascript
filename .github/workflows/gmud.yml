@@ -27,7 +27,7 @@ jobs:
           ' | jq -r '.data')
           IFS='/'
           read -ra ADDR <<< "$data"          
-          echo "::set-output name=GMUD::${ADDR[${#ADDR[@]}-1]}"        
+          echo "::set-output name=GMUD::${data}"        
           
       - name: 'check status GMUD'
         run: echo ${{ steps.res.outputs.GMUD }}
