@@ -24,10 +24,10 @@ jobs:
               "tecnical_approval": "adolfo.pereira@madeiramadeira.com.br",
               "business_approval": "bruno.oliveira@madeiramadeira.com.br"
           }
-          ' | jq -r '.data._links.web')
+          ' | jq -r '.data')
           IFS='/'
           read -ra ADDR <<< "$data"          
-          echo "::set-output name=GMUD::https://madeiramadeira.atlassian.net/rest/servicedeskapi/request/${ADDR[${#ADDR[@]}-1]}"        
+          echo "::set-output name=GMUD::${ADDR[${#ADDR[@]}-1]}"        
           
       - name: 'check status GMUD'
         run: echo ${{ steps.res.outputs.GMUD }}
