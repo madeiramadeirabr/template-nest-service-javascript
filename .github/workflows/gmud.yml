@@ -6,9 +6,20 @@ on:
       - feature/create-gmud
  
 jobs:
+  check-existence-jira-issue:
+    runs-on: ubuntu-latest
+    name: 'Check the jira for an issue'
+    steps:
+      - name: 'check jira issue'
+        uses: archaic10/check-existence-jira-issue@v1
+        with:
+          url-jira:  ${{ steps.res.outputs.GMUD }}
+          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
+        
   check-status-service-desk:
     runs-on: ubuntu-latest
-    name: check status service desk
+    name: 'check status service desk'
+    needs: check-existence-jira-issue 
     steps:
       - name: 'Create GMUD'
         id: res
@@ -25,8 +36,7 @@ jobs:
               "business_approval": "bruno.oliveira@madeiramadeira.com.br"
           }
           ' | jq -r '.data')
-          IFS='/'
-          read -ra ADDR <<< "$data"          
+                  
           echo "::set-output name=GMUD::${data}"        
           
       - name: 'check status GMUD'
