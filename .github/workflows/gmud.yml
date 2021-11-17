@@ -13,7 +13,7 @@ jobs:
       - name: 'check jira issue'
         uses: archaic10/check-existence-jira-issue@v1
         with:
-          url-jira:  ${{ steps.res.outputs.GMUD }}
+          url-jira:  'https://madeiramadeira.atlassian.net/rest/api/3/issue//SRE-417'
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
         
   check-status-service-desk:
