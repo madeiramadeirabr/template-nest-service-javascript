@@ -21,10 +21,9 @@ jobs:
     name: 'show title pull request'
     needs: get-title-pull-request
     steps:
-      - name: 'show title'
-        
+      - name: 'show title'        
         run: |
-          echo ${{ get-title-pull-request.steps.title.outputs.TITLE }}
+          echo ${{ steps.title.outputs.TITLE }}
         
   check-existence-jira-issue:
     runs-on: ubuntu-latest
