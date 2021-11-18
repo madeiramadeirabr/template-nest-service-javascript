@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: 'show title'        
         run: |
-          echo ${{ steps.title.outputs.TITLE }}
+          echo ${{ jobs.get-title-pull-request.steps.title.outputs.TITLE }}
         
   check-existence-jira-issue:
     runs-on: ubuntu-latest
