@@ -39,6 +39,9 @@ jobs:
     name: 'check status service desk'
     needs: check-existence-jira-issue 
     steps:
+      - name: 'showwww'
+        run: |
+          echo ${{ needs.check-existence-jira-issue.outputs.TITLE }}
       - name: 'Create GMUD'
         id: res
         run: |
