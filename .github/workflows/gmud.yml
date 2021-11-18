@@ -43,7 +43,7 @@ jobs:
     steps:
       - name: 'showwww'
         run: |
-          echo ${{ needs.check-existence-jira-issue.outputs.TITLE }}
+          echo ${{ needs.check-existence-jira-issue.outputs.output1 }}
       - name: 'Create GMUD'
         id: res
         run: |
