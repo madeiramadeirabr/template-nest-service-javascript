@@ -14,12 +14,22 @@ jobs:
       - name: 'Get title'
         id: title
         run: |
-          echo ${{ github.event.pull_request.title }}
+          echo "::set-output name=TITLE::${{ github.event.pull_request.title }}"
+          
+  show-title-pull-request:
+    runs-on: ubuntu-latest
+    name: 'show title pull request'
+    needs: get-title-pull-request
+    steps:
+      - name: 'show title'
+        
+        run: |
+          echo ${{ get-title-pull-request.steps.res.outputs.GMUD }}
         
   check-existence-jira-issue:
     runs-on: ubuntu-latest
     name: 'Check the jira for an issue'
-    needs: get-title-pull-request
+    needs: show-title-pull-request
     steps:
       - name: 'check jira issue'
         uses: madeiramadeirabr/action-check-jira-issue@v1
