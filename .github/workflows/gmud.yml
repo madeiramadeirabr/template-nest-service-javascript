@@ -14,7 +14,7 @@ jobs:
       - name: 'Get title'
         id: title
         run: |
-          echo ${{ github.context.payload.pull_request.title }}
+          echo ${{ github.event }}
         
   check-existence-jira-issue:
     runs-on: ubuntu-latest
