@@ -24,7 +24,7 @@ jobs:
       - name: 'show title'
         
         run: |
-          echo ${{ get-title-pull-request.steps.res.outputs.GMUD }}
+          echo ${{ get-title-pull-request.steps.title.outputs.TITLE }}
         
   check-existence-jira-issue:
     runs-on: ubuntu-latest
