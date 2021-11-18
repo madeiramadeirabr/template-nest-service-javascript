@@ -11,7 +11,7 @@ jobs:
     name: 'Check the jira for an issue'
     steps:
       - name: 'check jira issue'
-        uses: archaic10/check-existence-jira-issue@v1
+        uses: madeiramadeirabr/action-check-jira-issue@v1
         with:
           url-jira:  'https://madeiramadeira.atlassian.net/rest/api/3/issue/SRE-999'
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
