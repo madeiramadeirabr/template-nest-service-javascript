@@ -6,34 +6,32 @@ on:
       - feature/create-gmud
  
 jobs:
-
-  get-title-pull-request:
+  
+  check-title-pull-request:
     runs-on: ubuntu-latest
-    name: 'get title pull request' 
+    name: 'check-title-pull-request'
+    steps:
+       - uses: madeiramadeirabr/action-check-branch-name-pattern@v1
+          
+  check-existence-jira-issue:
+    runs-on: ubuntu-latest
+    name: 'Check the jira for an issue'
+    needs: check-title-pull-request
     steps:
       - name: 'Get title'
         id: title
         run: |
-          echo "::set-output name=TITLE::${{ github.event.pull_request.title }}"
-          
-  show-title-pull-request:
-    runs-on: ubuntu-latest
-    name: 'show title pull request'
-    needs: get-title-pull-request
-    steps:
-      - name: 'show title'        
-        run: |
-          echo ${{ jobs.get-title-pull-request.steps.title.outputs.TITLE }}
-        
-  check-existence-jira-issue:
-    runs-on: ubuntu-latest
-    name: 'Check the jira for an issue'
-    needs: show-title-pull-request
-    steps:
+          text=${{ github.event.pull_request.title }}
+          IFS='('
+          read -ra ADDR <<< "$text"   
+          convert=${ADDR[${#ADDR[@]}-1]}
+          IFS=')'
+          read -ra ADDR <<< "$convert"
+          echo "::set-output name=TITLE::${ADDR[0]}"
       - name: 'check jira issue'
         uses: madeiramadeirabr/action-check-jira-issue@v1
         with:
-          url-jira:  'https://madeiramadeira.atlassian.net/rest/api/3/issue/SRE-417'
+          url-jira:  'https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ steps.title.outputs.TITLE }}'
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}          
         
   check-status-service-desk:
