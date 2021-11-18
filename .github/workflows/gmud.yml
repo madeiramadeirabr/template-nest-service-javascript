@@ -22,10 +22,10 @@ jobs:
         id: title
         run: |
           text=${{ github.event.pull_request.title }}
-          IFS='('
+          IFS="("
           read -ra ADDR <<< "$text"   
           convert=${ADDR[${#ADDR[@]}-1]}
-          IFS=')'
+          IFS=")"
           read -ra ADDR <<< "$convert"
           echo "::set-output name=TITLE::${ADDR[0]}"
       - name: 'check jira issue'
