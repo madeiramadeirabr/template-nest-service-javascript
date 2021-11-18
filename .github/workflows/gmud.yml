@@ -6,9 +6,20 @@ on:
       - feature/create-gmud
  
 jobs:
+
+  get-title-pull-request:
+    runs-on: ubuntu-latest
+    name: 'get title pull request' 
+    steps:
+      - name: 'Get title'
+        id: title
+        run: |
+          echo ${{ github.context.payload.pull_request.title }}
+        
   check-existence-jira-issue:
     runs-on: ubuntu-latest
     name: 'Check the jira for an issue'
+    needs: get-title-pull-request
     steps:
       - name: 'check jira issue'
         uses: madeiramadeirabr/action-check-jira-issue@v1
