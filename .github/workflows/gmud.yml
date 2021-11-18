@@ -15,6 +15,7 @@ jobs:
         with:
           url-jira:  'https://madeiramadeira.atlassian.net/rest/api/3/issue/SRE-999'
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
+          
         
   check-status-service-desk:
     runs-on: ubuntu-latest
