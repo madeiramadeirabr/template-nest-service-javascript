@@ -6,10 +6,27 @@ on:
       - feature/create-gmud
  
 jobs:
-  
+  get-headers:
+    runs-on: ubuntu-latest
+    name: 'get-headers'
+    steps:    
+     - name: "set headers"
+       id: test
+       run: |
+        echo"::set-output name=HEADERS::--header 'Authorization: ${{ secrets.BASIC_AUTH_JIRA }}' \
+        --header 'apikey: ${{ secrets.APIKEY_JAZZ }}' \
+        --header 'Content-Type: application/json' \"
+     - name: "Show headers"
+       run: |
+        echo "${{ steps.test.outputs.HEADERS }}"
+    
+    
+    
+    
   check-title-pull-request:
     runs-on: ubuntu-latest
     name: 'check-title-pull-request'
+    needs: get-headers 
     steps:
        - uses: madeiramadeirabr/action-check-branch-name-pattern@v1
           
@@ -53,7 +70,7 @@ jobs:
               "requestTypeId": "538",
               "id_card_issue": "${{ needs.check-existence-jira-issue.outputs.output1 }}",              
               "service": [{"id" : "ari:cloud:graph::service/e27f7002-0a2f-11eb-98e1-0a77f3f45304/907c246a-0f3a-11ec-8fa8-0abe3f4a6601"}],
-              "tecnical_approval": "adolfo.pereira@madeiramadeira.com.br",
+              "tecnical_approval": "paulo.peixoto@madeiramadeira.com.br",
               "business_approval": "bruno.oliveira@madeiramadeira.com.br"
           }
           ' | jq -r '.data')
