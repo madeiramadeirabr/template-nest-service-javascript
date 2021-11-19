@@ -6,27 +6,10 @@ on:
       - feature/create-gmud
  
 jobs:
-  get-headers:
-    runs-on: ubuntu-latest
-    name: 'get-headers'
-    steps:    
-     - name: "set headers"
-       id: test
-       run: |
-        echo"::set-output name=HEADERS::--header 'Authorization: ${{ secrets.BASIC_AUTH_JIRA }}' \
-        --header 'apikey: ${{ secrets.APIKEY_JAZZ }}' \
-        --header 'Content-Type: application/json' \"
-     - name: "Show headers"
-       run: |
-        echo "${{ steps.test.outputs.HEADERS }}"
-    
-    
-    
-    
+      
   check-title-pull-request:
     runs-on: ubuntu-latest
-    name: 'check-title-pull-request'
-    needs: get-headers 
+    name: 'check-title-pull-request' 
     steps:
        - uses: madeiramadeirabr/action-check-branch-name-pattern@v1
           
