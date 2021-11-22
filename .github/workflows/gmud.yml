@@ -65,7 +65,7 @@ jobs:
         
       - uses: actions/checkout@v2
       - id: foo
-        uses: archaic10/check-status-service-desk@v7
+        uses: archaic10/check-status-service-desk@v8
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           url-jira:  ${{ steps.res.outputs.GMUD }}
@@ -91,7 +91,7 @@ jobs:
           ' | jq -r '.data')
           
       - name: 'Check Approval business'
-        uses: archaic10/check-status-service-desk@v7
+        uses: archaic10/check-status-service-desk@v8
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           url-jira:  ${{ steps.res.outputs.GMUD }}
