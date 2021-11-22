@@ -70,6 +70,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           url-jira:  ${{ steps.res.outputs.GMUD }}
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
+          other-types-current-status: true
       - name: Get the output foo
         run: echo "${{ steps.foo.outputs.result }}"
         
@@ -96,3 +97,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           url-jira:  ${{ steps.res.outputs.GMUD }}
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
+          other-types-current-status: true
