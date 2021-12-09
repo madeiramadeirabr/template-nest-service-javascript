@@ -1,5 +1,3 @@
-name: validation deploy
-
 on:
   push:
    - testcigmud
