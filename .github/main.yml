@@ -1,16 +1,18 @@
-on:
+name: Node.js CI
+on: 
   push:
-    branches:
+    branch: 
       - testcigmud
-   
+
 jobs:
-  teste:
+  build:
+    name: Npm install & build
     runs-on: ubuntu-latest
-    name: check status service desk
     steps:
-      - uses: actions/checkout@v2
-      - id: foo
-        uses: archaic10/validation-deploy@v3
-        with:
-          url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/PTECH-211"
-          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
+    - uses: actions/checkout@v2
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14.x
+    - run: npm ci
+    - run: npm run build --if-present
