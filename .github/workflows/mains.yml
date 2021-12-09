@@ -1,0 +1,21 @@
+name: teste
+
+on:
+  push:
+    branches:
+      - feature/create-gmud
+   
+
+jobs:
+      
+  check:
+    runs-on: ubuntu-latest
+    name: 'teste' 
+    steps:
+       - uses: madeiramadeirabr/action-check-branch-name-pattern@v1 
+       - uses: actions/checkout@v2
+       - id: foo
+         uses: archaic10/validation-deploy@v3
+         with:
+           url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/PTECH-211"
+           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
