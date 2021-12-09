@@ -1,6 +1,7 @@
 on:
   push:
-   - testcigmud
+    branches:
+      - testcigmud
    
 jobs:
   teste:
