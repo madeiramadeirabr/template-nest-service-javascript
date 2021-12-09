@@ -11,8 +11,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     name: 'teste' 
-    steps:
-       - uses: madeiramadeirabr/action-check-branch-name-pattern@v1 
+    steps:   
        - uses: actions/checkout@v2
        - id: foo
          uses: archaic10/validation-deploy@v3
