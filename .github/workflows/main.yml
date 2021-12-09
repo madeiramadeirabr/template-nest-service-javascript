@@ -1,0 +1,18 @@
+name: teste
+
+on:
+  push:
+    branches:
+      - feature/create-gmud
+   
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    name: check status service desk
+    steps:
+      - uses: actions/checkout@v2
+      - id: foo
+        uses: archaic10/validation-deploy@v3
+        with:
+          url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/PTECH-211"
+          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
