@@ -1,0 +1,15 @@
+name: validation deploy
+
+on:
+  push:
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    name: check status service desk
+    steps:
+      - uses: actions/checkout@v2
+      - id: foo
+        uses: archaic10/validation-deploy@v1
+        with:          
+          url-jira:  ${{ steps.res.outputs.GMUD }}
+          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
