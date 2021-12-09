@@ -2,6 +2,8 @@ name: validation deploy
 
 on:
   push:
+   - testcigmud
+   
 jobs:
   teste:
     runs-on: ubuntu-latest
