@@ -3,7 +3,7 @@ name: teste
 on:
   push:
     branches:
-      - feature/create-gmud
+      - feature/test-gmud
    
 
 jobs:
