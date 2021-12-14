@@ -64,7 +64,7 @@ jobs:
           IFS="/"
           read -ra ADDR <<< "$url"
           key=${ADDR[${#ADDR[@]}-1]}
-          echo "::set-output name=URL:$key"
+          echo "::set-output name=URL::${key}"
       - name: 'check status GMUD business'
         run: echo ${{ steps.res.outputs.GMUD }}
         
