@@ -76,5 +76,5 @@ jobs:
       - name: 'Validation date deploy'
         uses: archaic10/validation-deploy@v8
         with:
-          url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ needs.create-gmud-jira-issue.outputs.url-jira }}"
+          url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ needs.create-gmud.outputs.url-jira }}"
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
