@@ -3,7 +3,7 @@ name: GMUD
 on:
   pull_request:
     branches:
-      - feature/create-gmud--example
+      - feature/create-gmud
  
 jobs:
       
