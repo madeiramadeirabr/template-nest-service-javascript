@@ -67,6 +67,7 @@ jobs:
           echo "::set-output name=URL:$key"
       - name: 'check status GMUD business'
         run: echo ${{ steps.res.outputs.GMUD }}
+        
   validation-date-deploy:
     runs-on: ubuntu-latest
     name: 'validation-date-deploy'
