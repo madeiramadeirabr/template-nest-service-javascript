@@ -3,7 +3,7 @@ name: GMUD
 on:
   pull_request:
     branches:
-      - feature/create-gmud
+      - feature/create-gmud--example
  
 jobs:
       
@@ -62,36 +62,4 @@ jobs:
           
       - name: 'check status GMUD business'
         run: echo ${{ steps.res.outputs.GMUD }}
-        
-      - uses: actions/checkout@v2
-      - id: foo
-        uses: archaic10/check-status-service-desk@v8
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          url-jira:  ${{ steps.res.outputs.GMUD }}
-          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
-          other-types-current-status: true
-      - name: Get the output foo
-        run: echo "${{ steps.foo.outputs.result }}"
-        
-      - name: 'Notification Approval Business'
-        id: approval
-        run: |
-          data=$(curl --location --request POST 'http://kong-wallarm.redekasa.com/slifer/v1/gmud' \
-          --header "Authorization: ${{ secrets.BASIC_AUTH_JIRA }}" \
-          --header "apikey: ${{ secrets.APIKEY_JAZZ }}" \
-          --header 'Content-Type: application/json' \
-          --data-raw '{
-              "id_card_issue": "${{ needs.check-existence-jira-issue.outputs.output1 }}",
-              "tecnical_approval": "rodrigo.celebrone@madeiramadeira.com.br",
-              "business_approval": "vitor.nunes@madeiramadeira.com.br"
-          }
-          ' | jq -r '.data')
-          
-      - name: 'Check Approval business'
-        uses: archaic10/check-status-service-desk@v8
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          url-jira:  ${{ steps.res.outputs.GMUD }}
-          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
-          other-types-current-status: true
+     
