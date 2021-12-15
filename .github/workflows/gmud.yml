@@ -39,7 +39,7 @@ jobs:
   create-gmud:
     runs-on: ubuntu-latest
     outputs:
-      url-jira: ${{ steps.title.outputs.URL }}
+      URLJIRA: ${{ steps.title.outputs.URL }}
     name: 'check status service desk'
     needs: check-existence-jira-issue 
     steps:
@@ -64,10 +64,10 @@ jobs:
           IFS="/"
           read -ra ADDR <<< "$url"
           key=${ADDR[${#ADDR[@]}-1]}
-          echo "::set-output name=URL::${key}"
+          echo "::set-output name=URLJIRA::${key}"
       - name: 'check status GMUD business'
         run: echo ${{ steps.res.outputs.GMUD }}
       - name: 'URL test'
-        run: echo ${{ steps.res.outputs.url-jira }}
+        run: echo ${{ steps.res.outputs.URLJIRA }}
         
  
