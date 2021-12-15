@@ -76,7 +76,8 @@ jobs:
     needs: create-gmud
     steps:
       - name: 'Validation date deploy'
-        uses: madeiramadeirabr/action-validate-deploy-date@v4
+        uses: madeiramadeirabr/action-validate-deploy-date@v5
         with:
           url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ needs.create-gmud.outputs.outputs1 }}"
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
+          
