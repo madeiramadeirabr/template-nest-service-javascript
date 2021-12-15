@@ -39,7 +39,7 @@ jobs:
   create-gmud:
     runs-on: ubuntu-latest
     outputs:
-      URLJIRA: ${{ steps.title.outputs.URL }}
+      outputs1: ${{ steps.res.outputs.URLJIRA }}
     name: 'check status service desk'
     needs: check-existence-jira-issue 
     steps:
@@ -76,4 +76,4 @@ jobs:
     needs: create-gmud
     steps:
       - name: 'testando'
-        run: echo "${{ needs.create-gmud.outputs.GMUD }}"
+        run: echo "${{ needs.create-gmud.outputs.outputs1 }}"
