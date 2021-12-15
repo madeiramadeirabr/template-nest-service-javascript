@@ -67,15 +67,7 @@ jobs:
           echo "::set-output name=URL::${key}"
       - name: 'check status GMUD business'
         run: echo ${{ steps.res.outputs.GMUD }}
+      - name: 'URL test'
+        run: echo ${{ steps.res.outputs.url-jira }}
         
-  validation-date-deploy:
-    runs-on: ubuntu-latest
-    name: 'validation-date-deploy'
-    needs: create-gmud
-    steps:
-      - name: 'Validation date deploy'
-        uses: madeiramadeirabr/action-validate-deploy-date@v3
-        with:
-          url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ needs.create-gmud.outputs.url-jira }}"
-          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
-          
+ 
