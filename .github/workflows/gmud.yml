@@ -48,6 +48,8 @@ jobs:
     name: 'check status service desk'
     needs: check-existence-jira-issue 
     steps: 
+      - name: "api"
+        run: echo "${{ toJSON(github.event.pull_request._links.self.href) }}"
       - name: 'Create GMUD And Notification Approval Tecnical'
         id: res
         run: |        
