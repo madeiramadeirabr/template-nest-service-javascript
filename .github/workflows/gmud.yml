@@ -25,7 +25,7 @@ jobs:
     needs: check-title-pull-request
     steps:
       - name: 'revele'
-        run: ${{ needs.check-existence-jira-issue.outputs.output1 }}"              
+        run: "${{ needs.check-existence-jira-issue.outputs.output1 }}"              
 
       - name: 'Get title'
         id: title
