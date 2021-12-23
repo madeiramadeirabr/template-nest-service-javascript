@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - feature/create-gmud
-            
+ 
 jobs:
       
   check-title-pull-request:
@@ -20,7 +20,6 @@ jobs:
     name: 'Check the jira for an issue'
     needs: check-title-pull-request
     steps:
-      
       - name: 'Get title'
         id: title
         run: |
@@ -43,11 +42,10 @@ jobs:
       outputs1: ${{ steps.res.outputs.URLJIRA }}
     name: 'check status service desk'
     needs: check-existence-jira-issue 
-    steps: 
-     
+    steps:
       - name: 'Create GMUD And Notification Approval Tecnical'
         id: res
-        run: |        
+        run: |
           data=$(curl --location --request POST 'http://kong-wallarm.redekasa.com/slifer/v1/gmud' \
           --header "Authorization: ${{ secrets.BASIC_AUTH_JIRA }}" \
           --header "apikey: ${{ secrets.APIKEY_JAZZ }}" \
@@ -55,12 +53,12 @@ jobs:
           --data-raw '{
               "serviceDeskId": "31",
               "requestTypeId": "538",
-              "id_card_issue": "sre-417",              
+              "id_card_issue": "${{ needs.check-existence-jira-issue.outputs.output1 }}",              
               "service": [{"id" : "ari:cloud:graph::service/e27f7002-0a2f-11eb-98e1-0a77f3f45304/907c246a-0f3a-11ec-8fa8-0abe3f4a6601"}],
               "tecnical_approval": "yago.brandao@madeiramadeira.com.br",
-              "business_approval": "vitor.nunes@madeiramadeira.com.br",
-              "url": ${{ toJSON(github.event.pull_request._links.self.href) }}
-          }'| jq -r '.data')
+              "business_approval": "vitor.nunes@madeiramadeira.com.br"
+          }
+          ' | jq -r '.data')                  
           echo "::set-output name=GMUD::${data}"        
           url=$data
           IFS="/"
@@ -78,9 +76,7 @@ jobs:
     needs: create-gmud
     steps:
       - name: 'Validation date deploy'
-        uses: madeiramadeirabr/action-validate-deploy-date@v1
+        uses: madeiramadeirabr/action-validate-deploy-date@v5
         with:
           url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ needs.create-gmud.outputs.outputs1 }}"
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
-          
-
