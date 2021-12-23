@@ -47,9 +47,7 @@ jobs:
       outputs1: ${{ steps.res.outputs.URLJIRA }}
     name: 'check status service desk'
     needs: check-existence-jira-issue 
-    steps:
-      - name: 'revele'
-        run: "${{ needs.check-existence-jira-issue.outputs.output1 }}" 
+    steps: 
       - name: 'Create GMUD And Notification Approval Tecnical'
         id: res
         run: |
