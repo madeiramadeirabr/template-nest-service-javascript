@@ -11,72 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     name: 'check-title-pull-request' 
     steps:
-       - uses: madeiramadeirabr/action-check-branch-name-pattern@v1
-          
-  check-existence-jira-issue:
-    runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.title.outputs.TITLE }}
-    name: 'Check the jira for an issue'
-    needs: check-title-pull-request
-    steps:
-      - name: 'Get title'
-        id: title
-        run: |
-          text="${{ github.event.pull_request.title }}"
-          IFS="("
-          read -ra ADDR <<< "$text"   
-          convert=${ADDR[${#ADDR[@]}-1]}
-          IFS=")"
-          read -ra ADDR <<< "$convert"
-          echo "::set-output name=TITLE::${ADDR[0]}"
-      - name: 'check jira issue'
-        uses: madeiramadeirabr/action-check-jira-issue@v1
-        with:
-          url-jira:  'https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ steps.title.outputs.TITLE }}'
-          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}          
-        
-  create-gmud:
-    runs-on: ubuntu-latest
-    outputs:
-      outputs1: ${{ steps.res.outputs.URLJIRA }}
-    name: 'check status service desk'
-    needs: check-existence-jira-issue 
-    steps:
-      - name: 'Create GMUD And Notification Approval Tecnical'
-        id: res
-        run: |
-          data=$(curl --location --request POST 'http://kong-wallarm.redekasa.com/slifer/v1/gmud' \
-          --header "Authorization: ${{ secrets.BASIC_AUTH_JIRA }}" \
-          --header "apikey: ${{ secrets.APIKEY_JAZZ }}" \
-          --header 'Content-Type: application/json' \
-          --data-raw '{
-              "serviceDeskId": "31",
-              "requestTypeId": "538",
-              "id_card_issue": "${{ needs.check-existence-jira-issue.outputs.output1 }}",              
-              "service": [{"id" : "ari:cloud:graph::service/e27f7002-0a2f-11eb-98e1-0a77f3f45304/907c246a-0f3a-11ec-8fa8-0abe3f4a6601"}],
-              "tecnical_approval": "yago.brandao@madeiramadeira.com.br",
-              "business_approval": "vitor.nunes@madeiramadeira.com.br"
-          }
-          ' | jq -r '.data')                  
-          echo "::set-output name=GMUD::${data}"        
-          url=$data
-          IFS="/"
-          read -ra ADDR <<< "$url"
-          key=${ADDR[${#ADDR[@]}-1]}
-          echo "::set-output name=URLJIRA::${key}"
-      - name: 'check status GMUD business'
-        run: echo ${{ steps.res.outputs.GMUD }}
-      - name: 'URL test'
-        run: echo ${{ steps.res.outputs.URLJIRA }}
-        
-  validation-date-deploy:
-    runs-on: ubuntu-latest
-    name: 'validation-date-deploy'
-    needs: create-gmud
-    steps:
-      - name: 'Validation date deploy'
-        uses: madeiramadeirabr/action-validate-deploy-date@v5
-        with:
-          url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ needs.create-gmud.outputs.outputs1 }}"
-          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo "${{ github.event.pull_request.title }}"
