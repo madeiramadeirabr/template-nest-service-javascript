@@ -65,8 +65,7 @@ jobs:
               "tecnical_approval": "yago.brandao@madeiramadeira.com.br",
               "business_approval": "vitor.nunes@madeiramadeira.com.br",
               "url": "${{ toJSON(github.event.pull_request._links.self.href) }}"
-          }
-          ' | jq -r '.data')                  
+          }' | jq -r '.data')                  
           echo "::set-output name=GMUD::${data}"        
           url=$data
           IFS="/"
