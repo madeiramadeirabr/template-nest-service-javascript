@@ -4,11 +4,7 @@ on:
   pull_request:
     branches:
       - feature/test-gmud
-      
-  repository_dispatch:
-    branches:
-      - feature/test-gmud
-      
+            
 jobs:
       
   check-title-pull-request:
