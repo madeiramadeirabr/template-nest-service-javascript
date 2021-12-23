@@ -3,11 +3,11 @@ name: GMUD
 on:
   pull_request:
     branches:
-      - feature/create-gmud
+      - feature/test-gmud
       
   repository_dispatch:
     branches:
-      - feature/create-gmud
+      - feature/test-gmud
       
 jobs:
       
