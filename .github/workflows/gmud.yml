@@ -24,9 +24,7 @@ jobs:
     name: 'Check the jira for an issue'
     needs: check-title-pull-request
     steps:
-      - name: 'revele'
-        run: "${{ needs.check-existence-jira-issue.outputs.output1 }}"              
-
+      
       - name: 'Get title'
         id: title
         run: |
@@ -50,6 +48,8 @@ jobs:
     name: 'check status service desk'
     needs: check-existence-jira-issue 
     steps:
+      - name: 'revele'
+        run: "${{ needs.check-existence-jira-issue.outputs.output1 }}" 
       - name: 'Create GMUD And Notification Approval Tecnical'
         id: res
         run: |
