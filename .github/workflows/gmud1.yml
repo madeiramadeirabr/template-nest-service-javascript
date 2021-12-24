@@ -5,9 +5,7 @@ on:
     branches:
       - create-gmud-test
   
-  repository_dispatch:
-    branches:
-      - feature/create-gmud
+  repository_dispatch:  
  
 jobs:
       
