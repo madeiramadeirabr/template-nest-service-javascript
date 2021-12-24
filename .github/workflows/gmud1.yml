@@ -51,7 +51,7 @@ jobs:
           data=$(curl --location --request POST 'http://kong-wallarm.redekasa.com/slifer/v1/gmud' \
           --header "Authorization: ${{ secrets.BASIC_AUTH_JIRA }}" \
           --header "apikey: ${{ secrets.APIKEY_JAZZ }}" \
-          --header "auth_github: ${{ secrets.BASIC_AUTH_GITHUB}}"\
+          --header "auth_github: ${{ secrets.BASIC_AUTH_GITHUB}}" \
           --header 'Content-Type: application/json' \
           --data-raw '{
               "serviceDeskId": "31",
