@@ -4,6 +4,10 @@ on:
   pull_request:
     branches:
       - create-gmud-test
+      
+  repository_dispatch:
+    branches:
+      - create-gmud-test
  
 jobs:
       
