@@ -6,9 +6,7 @@ on:
       - create-gmud-test
       
   repository_dispatch:
-    branches:
-      - create-gmud-test
- 
+     
 jobs:
       
   check-title-pull-request:
