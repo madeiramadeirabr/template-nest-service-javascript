@@ -18,8 +18,8 @@ jobs:
       
   check-title-pull-request:
     runs-on: ubuntu-latest
-    name: 'check-title-pull-request'
     if: github.event_name != 'repository_dispatch' 
+    name: 'check-title-pull-request'    
     steps:
        - uses: madeiramadeirabr/action-check-branch-name-pattern@v1
           
