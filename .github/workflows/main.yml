@@ -85,7 +85,8 @@ jobs:
         run: echo ${{ steps.res.outputs.URLJIRA }}
    
   validation-date-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latestz
+    if: github.event_name != "repository_dispatch"
     name: 'validation-date-deploy'  
     steps:
       - name: 'Validation date deploy'
@@ -93,3 +94,14 @@ jobs:
         with:
           url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ needs.create-gmud.outputs.outputs1 }}"
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
+          
+  validation-date-deploy-dispatch:
+    runs-on: ubuntu-latest
+    if: github.event_name == "repository_dispatch"
+    name: 'validation-date-deploy-dispatch'  
+    steps:
+      - name: 'Validation date deploy'
+        uses: madeiramadeirabr/action-validate-deploy-date@v1
+        with:
+          url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ github.event.action }}"
+          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}    
