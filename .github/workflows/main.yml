@@ -86,7 +86,7 @@ jobs:
    
   validation-date-deploy:
     runs-on: ubuntu-latestz
-    if: github.event_name != "repository_dispatch"
+    if: github.event_name != 'repository_dispatch'
     name: 'validation-date-deploy'  
     steps:
       - name: 'Validation date deploy'
