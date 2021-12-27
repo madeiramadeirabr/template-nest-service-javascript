@@ -83,10 +83,9 @@ jobs:
         run: echo ${{ steps.res.outputs.GMUD }}
       - name: 'URL test'
         run: echo ${{ steps.res.outputs.URLJIRA }}
-        
+   
   validation-date-deploy:
     runs-on: ubuntu-latest
-    if: github.event_name == 'repository_dispatch' 
     name: 'validation-date-deploy'  
     steps:
       - name: 'Validation date deploy'
