@@ -18,12 +18,14 @@ jobs:
       
   check-title-pull-request:
     runs-on: ubuntu-latest
-    name: 'check-title-pull-request' 
+    name: 'check-title-pull-request'
+    if: github.event_name != 'repository_dispatch' 
     steps:
        - uses: madeiramadeirabr/action-check-branch-name-pattern@v1
           
   check-existence-jira-issue:
     runs-on: ubuntu-latest
+    if: github.event_name != 'repository_dispatch' 
     outputs:
       output1: ${{ steps.title.outputs.TITLE }}
     name: 'Check the jira for an issue'
@@ -47,6 +49,7 @@ jobs:
         
   create-gmud:
     runs-on: ubuntu-latest
+    if: github.event_name != 'repository_dispatch' 
     outputs:
       outputs1: ${{ steps.res.outputs.URLJIRA }}
     name: 'check status service desk'
@@ -84,8 +87,7 @@ jobs:
   validation-date-deploy:
     runs-on: ubuntu-latest
     if: github.event_name == 'repository_dispatch' 
-    name: 'validation-date-deploy'
-    needs: create-gmud
+    name: 'validation-date-deploy'  
     steps:
       - name: 'Validation date deploy'
         uses: madeiramadeirabr/action-validate-deploy-date@v1
