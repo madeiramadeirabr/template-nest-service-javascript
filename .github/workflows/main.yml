@@ -88,6 +88,7 @@ jobs:
     runs-on: ubuntu-latestz
     if: github.event_name != 'repository_dispatch'
     name: 'validation-date-deploy'  
+    needs: create-gmud
     steps:
       - name: 'Validation date deploy'
         uses: madeiramadeirabr/action-validate-deploy-date@v1
