@@ -8,14 +8,7 @@ on:
   repository_dispatch:
      
 jobs:
-  
-  content:
-    runs-on: ubuntu-latest
-    name: 'content'
-    steps: 
-      - name: 'Content gihub'
-        run: echo "${{ toJSON(github) }}"
-      
+         
   check-title-pull-request:
     runs-on: ubuntu-latest
     if: github.event_name != 'repository_dispatch' 
