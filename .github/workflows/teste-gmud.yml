@@ -18,6 +18,6 @@ jobs:
           service-desk-id: '31'
           request-type-id: '538'
           service: "[{id' : 'ari:cloud:graph::service/e27f7002-0a2f-11eb-98e1-0a77f3f45304/907c246a-0f3a-11ec-8fa8-0abe3f4a6601'}]"
-#           tecnical-approval: ${{ secrets.TECNICAL_APPROVAL}}
-#           business-approval: ${{ secrets.BUSINESS_APPROVAL}}
+          tecnical-approval: ${{ secrets.TECNICAL_APPROVAL}}
+          business-approval: ${{ secrets.BUSINESS_APPROVAL}}
           url-pull-request: ${{ github.event.pull_request._links.self.href }}/${{ github.run_id}}
