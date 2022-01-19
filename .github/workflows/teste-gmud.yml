@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     name: 'create-gmud'
     steps:
-      - uses: madeiramadeirabr/action-generate-gmud-sre@v1
+      - uses: madeiramadeirabr/action-generate-gmud-sre@v2
         with: 
           domain: 'madeiramadeira'
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
