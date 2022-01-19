@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     name: 'create-gmud'
     steps:
-      - uses: archaic10/create-gmud@v2
+      - uses: madeiramadeirabr/action-generate-gmud-sre/tree/staging@v1
         with: 
           domain: 'madeiramadeira'
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
@@ -18,7 +18,7 @@ jobs:
           service-desk-id: '31'
           request-type-id: '538'
           service: ${{ secrets.SERVICE }}
-          tecnical-approval: ${{ secrets.TECNICAL_APPROVAL }}
+          technical-approval: ${{ secrets.TECHNICAL_APPROVAL }}
           business-approval: ${{ secrets.BUSINESS_APPROVAL }}
           url-pull-request: ${{ github.event.pull_request._links.self.href }}/${{ github.run_id}}
           url-slifer-gmud: ${{ secrets.URL_SLIFER_GMUD }}
