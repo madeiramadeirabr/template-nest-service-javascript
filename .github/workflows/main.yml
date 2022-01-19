@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest 
     name: 'check-title-pull-request'    
     steps:
-       - uses: madeiramadeirabr/action-check-branch-name-pattern@v1
+       - uses: madeiramadeirabr/action-check-title-pr-pattern@v1
           
   check-existence-jira-issue:
     runs-on: ubuntu-latest     
