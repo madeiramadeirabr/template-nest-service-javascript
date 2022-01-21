@@ -12,12 +12,12 @@ jobs:
       - uses: madeiramadeirabr/action-generate-gmud-sre@v1
         with: 
           domain: 'madeiramadeira'
-          basic-auth: ${{ secrets.GLOBALS_SRE_BASIC_AUTH_JIRA }}
-          api-key: ${{ secrets.GLOBALS_SRE_APIKEY_JAZZ_GMUD }}
-          auth-github: ${{ secrets.GLOBALS_SRE_BASIC_AUTH_GITHUB}}
+          basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
+          api-key: ${{ secrets.APIKEY_JAZZ }}
+          auth-github: ${{ secrets.BASIC_AUTH_GITHUB}}
           service-desk-id: '31'
           request-type-id: '538'
           technical-approval: ${{ secrets.TECHNICAL_APPROVAL }}
           business-approval: ${{ secrets.BUSINESS_APPROVAL }}
           url-pull-request: ${{ github.event.pull_request._links.self.href }}/${{ github.run_id}}
-          url-slifer-gmud: ${{ secrets.GLOBALS_SRE_URL_SLIFER_GMUD }}
+          url-slifer-gmud: ${{ secrets.URL_SLIFER_GMUD }}
