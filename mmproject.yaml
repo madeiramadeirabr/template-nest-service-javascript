@@ -1,0 +1,37 @@
+version: 1.0.0
+name: "nest-service-template"
+jobs:
+  - name: validation
+    path: ./github/workflows/main.yaml
+    uses: action
+
+  - name: pre-build
+    path: ./github/workflows/main.yaml
+    uses: action
+
+  - name: build
+    path: ./github/workflows/main.yaml
+    uses: action
+
+  - name: checagem estatica
+    path: ./github/workflows/main.yaml
+    uses: action
+
+  - name: quality gateway
+    path: ./github/workflows/main.yaml
+    uses: action
+
+  - name: testes
+    path: ./github/workflows/main.yaml
+    uses: action
+
+  - name: coverage
+    path: ./github/workflows/main.yaml
+    uses: action
+
+  - name: gmud
+    path: ./github/workflows/main.yaml
+    uses: action
+tags:
+  - linguaguens
+  - infraestrutura
