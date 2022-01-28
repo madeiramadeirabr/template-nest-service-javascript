@@ -1,7 +1,7 @@
 version: 1.0.1
 name: "nest-service-template"
 jobs:
-  - name: validation2
+  - name: validation
     path: ./github/workflows/main.yaml
     uses: action
  
