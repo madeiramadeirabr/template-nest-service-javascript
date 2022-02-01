@@ -2,7 +2,7 @@ name: auto-changelog-cli
 on:
   push:
     branches:
-      - test/ci
+      - feature/ci
 
 jobs:
   changelog:
