@@ -16,7 +16,15 @@ jobs:
 
       - name: dependencys
         run: yarn install
-
+        
+      - name: setting git
+        run: |
+          git config --local user.email ${{ secrets.MY_EMAIL}}
+          git config --local user.name ${{ secrets.MY_USER }}         
+      
+      - name: update version
+        run: npm version patch
+        
       - name: install auto-changelog
         run: yarn add auto-changelog --dev
 
@@ -27,9 +35,7 @@ jobs:
         run: echo "${{ steps.release.outputs.changelog }}"  >> CHANGELOG.md
         
       - name: Commit CHANGELOG.md
-        run: |
-          git config --local user.email ${{ secrets.MY_EMAIL}}
-          git config --local user.name ${{ secrets.MY_USER }}
+        run: |          
           git add .
           git commit -m "ci: generate changelog"
       - name: Push changelog
