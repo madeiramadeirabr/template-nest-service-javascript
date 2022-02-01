@@ -1,6 +1,6 @@
 name: auto-changelog-cli
 on:
-  pull_request:
+  push:
     branches:
       - feature/ci
 
