@@ -46,7 +46,7 @@ jobs:
     environment: coverage
     steps:
     - uses: actions/checkout@v2
-    - run: npm install && npm run test:covz
+    - run: npm install && npm run test:cov
             
   # sonarcloud:
   #   needs: coverage
