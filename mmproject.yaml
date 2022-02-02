@@ -1,9 +1,7 @@
 version: 1.0.0
 name: "Gandora"
 jobs:
-  - name: validation
-    path: ./github/workflows/main.yaml
-    uses: action | bot
+  
 
   - name: pre-build
     path: ./github/workflows/main.yaml
