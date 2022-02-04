@@ -1,8 +1,9 @@
 name: Changelog
 on: 
   push:
-    
-changelog:    
+  
+jobs:
+  changelog:    
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
