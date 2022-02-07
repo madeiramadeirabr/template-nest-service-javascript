@@ -17,8 +17,8 @@ jobs:
         
       - name: setting git
         run: |
-          git config --local user.email ${{ secrets.MY_EMAIL}}
-          git config --local user.name ${{ secrets.MY_USER }}         
+          git config --local user.email ${{ secrets.MAIL_CI_GITHUB}}
+          git config --local user.name ${{ secrets.USER_CI_GITHUB }}         
       
       - name: update version
         run: npm version patch
