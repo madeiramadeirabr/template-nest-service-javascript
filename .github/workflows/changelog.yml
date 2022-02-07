@@ -17,7 +17,7 @@ jobs:
         
       - name: setting git
         run: |
-          git config --local user.email ${{ secrets.MAIL_CI_GITHUB}}
+          git config --local user.email ${{ secrets.MAIL_CI_GITHUB }}
           git config --local user.name ${{ secrets.USER_CI_GITHUB }}         
       
       - name: update version
