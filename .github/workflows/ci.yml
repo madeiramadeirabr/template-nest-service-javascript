@@ -29,7 +29,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
       - name: Install dependencies
-        run: npm install 
+        run: npm install
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
         
   build:
     needs: dependencys
