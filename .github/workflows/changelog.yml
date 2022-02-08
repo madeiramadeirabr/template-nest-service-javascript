@@ -39,7 +39,7 @@ jobs:
       - name: Push changelog
         uses: ad-m/github-push-action@master
         with:
-          branch: feature/ci
+          branch: test/cache
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
           
