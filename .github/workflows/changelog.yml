@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 0 
 
       - name: dependencys
-        run: npm install
+        run: yarn install
         
       - name: setting git
         run: |
@@ -24,10 +24,10 @@ jobs:
         run: npm version patch
         
       - name: install auto-changelog
-        run: npm install auto-changelog --save-dev
+        run: yarn add auto-changelog --dev
 
       - name: generate changelog
-        run: npm auto-changelog -p
+        run: yarn auto-changelog -p
       
       - name: write changelog on CHANGELOG.md
         run: echo "${{ steps.release.outputs.changelog }}"  >> CHANGELOG.md
