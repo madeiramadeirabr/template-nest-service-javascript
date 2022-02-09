@@ -5,7 +5,7 @@ on:
       - production
 
 jobs:
-  create-gmud:
+  gmud:
     runs-on: ubuntu-latest
     name: 'create-gmud'
     steps:
