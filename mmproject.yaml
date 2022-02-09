@@ -29,5 +29,5 @@ jobs:
       path: ./github/workflows/teste-gmud.yaml
       uses: action
 tags:
-    - language: node.js
-    - infra:
+    - language: node.js:14.0
+    - infra: ecs
