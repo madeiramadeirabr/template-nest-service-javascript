@@ -1,31 +1,31 @@
 version: 1.0.aaaaaaaaaaaaaa
 name: sre-lambda-project
 jobs:
-    - name: 
+    - name: pre-build
       path: ./github/workflows/pre-build.yaml
       uses: action
 
-    - name: 
+    - name: build
       path: ./github/workflows/build.yaml
       uses: action
       
-    - name: 
+    - name: lint
       path: ./github/workflows/lint.yaml
       uses: action
         
-    - name: 
+    - name: quality
       path: ./github/workflows/quality_gateway.yaml
       uses: action
         
-    - name: 
+    - name: tests
       path: ./github/workflows/tests.yaml
       uses: action
         
-    - name: 
+    - name: coverage
       path: ./github/workflows/main.yaml
       uses: action 
     
-    - name: 
+    - name: gmud
       path: 
       uses: action
 tags:
