@@ -26,7 +26,7 @@ jobs:
       uses: action 
     
     - name: gmud
-      path: ./github/workflows/teste-gmud.yaml
+      path: ./github/workflows/teste1-gmud.yaml
       uses: action
 tags:
     - language: node.js:14.0
