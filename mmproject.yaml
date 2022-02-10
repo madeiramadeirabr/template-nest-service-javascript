@@ -1,6 +1,10 @@
 version: 1.0.0
 name: sre-lambda-project
 jobs:
+    - name: validation
+      path: ./github/workflows/teste-gmud.yaml
+      uses: action 
+        
     - name: pre-build
       path: ./github/workflows/teste-gmud.yaml
       uses: action
