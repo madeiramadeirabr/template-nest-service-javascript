@@ -1,4 +1,6 @@
-name: Changelog
+
+  
+name: New Changelog
 on: 
   push:
   
@@ -17,8 +19,8 @@ jobs:
         
       - name: setting git
         run: |
-          git config --local user.email ${{ secrets.MAIL_CI_GITHUB }}
-          git config --local user.name ${{ secrets.USER_CI_GITHUB }}            
+          git config --local user.email ${{ secrets.MY_EMAIL}}
+          git config --local user.name ${{ secrets.MY_USER }}         
       
       - name: update version
         run: npm version patch
@@ -32,15 +34,7 @@ jobs:
       - name: write changelog on CHANGELOG.md
         run: echo "${{ steps.release.outputs.changelog }}"  >> CHANGELOG.md
         
-      - name: Commit CHANGELOG.md
-        run: |          
-          git add .
-          git commit -m "ci: generate changelog"
-      - name: Push changelog
-        uses: ad-m/github-push-action@master
+      - uses: archaic10/new-changelog@main   
         with:
-          branch: test/cache
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force: true
-          
-          
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      
