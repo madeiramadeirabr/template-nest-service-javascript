@@ -3,6 +3,7 @@ import { AppModule } from './app/app.module';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { Logger } from '@nestjs/common';
 import { grpcClientOptions, grpcPort } from './grpc-client.options';
+import { GeneralErrorFilter } from './common/filters/http-exception.filter';
 import { ResponseInterceptor } from './app/response.interceptor';
 import SwaggerSpec from './openapi';
 
@@ -29,6 +30,7 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalFilters(new GeneralErrorFilter(logger));
   app.connectMicroservice<MicroserviceOptions>(grpcClientOptions);
   // swagger
   SwaggerSpec.generateDocs(app);
