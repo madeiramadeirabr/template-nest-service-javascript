@@ -29,7 +29,8 @@ const bootstrap = async () => {
   process.env.GRPC_PORT = grpcPort.toString();
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-  app.useGlobalInterceptors(new ResponseInterceptor());
+  //TODO acertar depois
+  // app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalFilters(new GeneralErrorFilter(logger));
   app.connectMicroservice<MicroserviceOptions>(grpcClientOptions);
   // swagger
