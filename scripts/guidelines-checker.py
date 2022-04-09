@@ -99,7 +99,7 @@ def repeat(word, m, n):
 
 
 class GuidelinesChecker:
-    _GUIDES_CONFIG = {
+    GUIDES_CONFIG = {
         "github-templates": {"callback": "has_github_templates", "required": True},
         "github-actions": {"callback": "has_github_actions", "required": True},
         "github-docs": {"callback": "has_github_docs", "required": True},
@@ -122,7 +122,7 @@ class GuidelinesChecker:
     def check(self):
         global _GUIDELINES
         global _FINAL_RESULT
-        for guide_key, object in self._GUIDES_CONFIG.items():
+        for guide_key, object in self.GUIDES_CONFIG.items():
             callback = object['callback']
             if hasattr(self, str(callback)):
                 result = getattr(self, callback)()
@@ -235,9 +235,18 @@ class GuidelinesChecker:
         else:
             tests_folder = ROOT_DIR + 'tests/'
 
+        ignored_dirs = ['.github', '.vscode', '.git', '.idea', 'docker', 'scripts', 'bin']
+        directories = [f for f in os.listdir(ROOT_DIR) if
+                       os.path.isdir(f) and f not in ignored_dirs]
+        go_unit_pattern = r'(.*)_test\.go'
+        node_unit_pattern = r'(.*)_spec\.(js|ts)'
+        go_unit_test_files = True if GuidelinesChecker.search_by_pattern(directories, go_unit_pattern) else False
+        node_unit_test_files = True if GuidelinesChecker.search_by_pattern(directories, node_unit_pattern) else False
+
         unit_tests = os.path.isdir(tests_folder + 'unit') \
                      or os.path.isdir(tests_folder + 'Unit') \
-                     or os.path.isfile(tests_folder + 'jest-unit.json')
+                     or os.path.isfile(tests_folder + 'jest-unit.json') \
+                     or go_unit_test_files or node_unit_test_files
         integration_tests = os.path.isdir(tests_folder + 'integration') \
                             or os.path.isdir(tests_folder + 'Integration') \
                             or os.path.isfile(tests_folder + 'jest-integration.json')
@@ -245,7 +254,7 @@ class GuidelinesChecker:
                           or os.path.isdir(tests_folder + 'Component') \
                           or os.path.isfile(tests_folder + 'jest-component.json')
         result = unit_tests and integration_tests and component_tests
-        # TODO incluir outros tipos de cenários aqui
+
         return {
             "result": result,
             "contexts": [
@@ -260,6 +269,22 @@ class GuidelinesChecker:
                 },
             ]
         }
+
+    @staticmethod
+    def search_by_pattern(directories, go_pattern):
+        test_files = []
+        for d in directories:
+            dir_files = []
+            for f in os.listdir(os.path.join(ROOT_DIR, d)):
+                if os.path.isdir(os.path.join(ROOT_DIR, d, f)):
+                    for sf in os.listdir(os.path.join(ROOT_DIR, d, f)):
+                        if re.match(go_pattern, str(sf)):
+                            dir_files.append(sf)
+                elif re.match(go_pattern, str(f)):
+                    dir_files.append(f)
+            #             print("dir_files", dir_files)
+            test_files = test_files + dir_files
+        return test_files
 
     @staticmethod
     def has_aws_ci_cd():
@@ -294,17 +319,20 @@ class GuidelinesChecker:
 checker = GuidelinesChecker()
 checker.check()
 
-print(repeat('-', 1, 60))
+_LINE_SIZE = 80
+print(repeat('-', 1, _LINE_SIZE))
 print('{} - {}'.format('Guideline Checker', _VERSION_STR))
-print(repeat('-', 1, 60))
-print('{}{}'.format('Guidelines'.ljust(40), 'Achieved/Founded'))
-print(repeat('-', 1, 60))
+print(repeat('-', 1, _LINE_SIZE))
+print('{}{}{}'.format('Guidelines'.ljust(40), 'Achieved/Found'.ljust(20), 'Required'))
+print(repeat('-', 1, _LINE_SIZE))
 for k in _GD_KEYS:
     value = _GUIDELINES[k]
     if isinstance(value, bool):
-        print('{}{}'.format(k.ljust(40), str(value)))
+        print('{}{}{}'.format(k.ljust(40), str(value).ljust(20),
+            GuidelinesChecker.GUIDES_CONFIG[k]['required']))
     elif isinstance(value, dict) or isinstance(value, list):
-        print('{}{}'.format(k.ljust(40), ''))
+        print('{}{}{}'.format(k.ljust(40), ''.ljust(20),
+            GuidelinesChecker.GUIDES_CONFIG[k]['required']))
         if isinstance(value, dict):
             sub_keys = value.keys()
         else:
@@ -328,9 +356,9 @@ for k in _GD_KEYS:
                 print('{}{}{}'.format(''.ljust(10), str(key).ljust(30), val))
             else:
                 print('{}{}{}'.format(''.ljust(5), str(sk).ljust(35), sv))
-print(repeat('-', 1, 60))
+print(repeat('-', 1, _LINE_SIZE))
 print('{}{}'.format('Final Result'.ljust(40), _FINAL_RESULT))
-print(repeat('-', 1, 60))
+print(repeat('-', 1, _LINE_SIZE))
 # print('Generating the guidelines file: guidelines.yaml')
 
 if _FINAL_RESULT:
