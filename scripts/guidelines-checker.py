@@ -85,7 +85,7 @@ _GUIDELINES = {
     ]
 }
 _GD_KEYS = _GUIDELINES.keys()
-_FINAL_RESULT = False
+_FINAL_RESULT = True
 
 
 def repeat(word, m, n):
