@@ -1,10 +1,21 @@
 import { ResourceInterface } from '../interfaces/resource.interface';
 import { StatusInterface } from './interfaces/status.interface';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class Health implements ResourceInterface {
+  @ApiProperty({
+    description: 'Service status',
+    default: true,
+    name: 'alive',
+  })
   private _alive: boolean;
   private _grpcPort: string;
   private _restPort: string;
+  @ApiProperty({
+    description: 'Current environment',
+    default: 'development',
+    name: 'env',
+  })
   private _env: string;
   private _message: string;
   private _applicationName: string;

@@ -36,3 +36,16 @@ lerna-debug.log*
 
 # Env file
 .env
+
+
+# Coverage results and execution report
+!/target/integration/report.xml
+!/target/unit/report.xml
+!/target/integration/clover.xml
+!/target/unit/clover.xml
+!/target/unit/junit-report.xml
+!/target/functional/junit-report.xml
+
+# ignore
+/target/functional/coverage_html/
+/target/unit/coverage_html/
