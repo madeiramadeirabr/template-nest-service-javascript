@@ -22,7 +22,7 @@ jobs:
           url-pull-request: ${{ github.event.pull_request._links.self.href }}/${{ github.run_id}}
           url-slifer-gmud: ${{ secrets.GLOBALS_SRE_URL_SLIFER_GMUD }}
              
-      - uses: madeiramadeirabr/action-validate-deploy-date@v2
+      - uses: madeiramadeirabr/action-validate-deploy-date@production
         with:
-          url-jira: "https://madeiramadeira.atlassian.net/rest/api/3/issue/${{ needs.create-gmud.outputs.outputs1 }}"
+          domain: "madeiramadeira"
           basic-auth: ${{ secrets.BASIC_AUTH_JIRA }}
