@@ -5,6 +5,6 @@ metadata:
   annotations:
     github.com/project-slug: madeiramadeirabr/template-nest-service-javascript
 spec:
-  type: other
-  lifecycle: unknown
+  type: template
+  lifecycle: experimental
   owner: team-platform-services
