@@ -1,0 +1,37 @@
+version: 1.0.0
+name: sre-lambda-project
+jobs:
+    - name: validation
+      path: ./github/workflows/teste-gmud.yaml
+      uses: action 
+        
+    - name: pre-build
+      path: ./github/workflows/teste-gmud.yaml
+      uses: action
+
+    - name: build
+      path: ./github/workflows/teste-gmud.yaml
+      uses: action
+      
+    - name: lint
+      path: ./github/workflows/teste-gmud.yaml
+      uses: action
+        
+    - name: quality
+      path: ./github/workflows/teste-gmud.yaml
+      uses: action
+        
+    - name: tests
+      path: ./github/workflows/teste-gmud.yaml
+      uses: action
+        
+    - name: coverage
+      path: ./github/workflows/teste-gmud.yaml
+      uses: action 
+    
+    - name: gmud
+      path: ./github/workflows/teste-gmud.yaml
+      uses: action
+tags:
+    - language: node.js:14.0
+    - infra: ecs
