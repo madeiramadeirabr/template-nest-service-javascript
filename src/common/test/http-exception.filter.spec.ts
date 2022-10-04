@@ -10,6 +10,10 @@ const mokGetRequest = {
 
 const mockJson = jest.fn();
 
+const mockLogger = {
+  error: jest.fn(),
+};
+
 const mockStatus = jest.fn().mockImplementation(() => ({
   json: mockJson,
 }));
@@ -44,7 +48,13 @@ describe('Http exception filter', () => {
   beforeEach(async () => {
     jest.clearAllMocks();
     const module: TestingModule = await Test.createTestingModule({
-      providers: [GeneralErrorFilter, Logger],
+      providers: [
+        GeneralErrorFilter,
+        {
+          provide: Logger,
+          useValue: mockLogger,
+        },
+      ],
     }).compile();
     service = module.get<GeneralErrorFilter>(GeneralErrorFilter);
   });
