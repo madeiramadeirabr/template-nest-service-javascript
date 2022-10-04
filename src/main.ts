@@ -21,7 +21,8 @@ const bootstrap = async () => {
       restPort,
   );
   logger.log(
-    '🍻️ Core APIs Nest Service Template gRPC layer listening on port ' + 50052,
+    '🍻️ Core APIs Nest Service Template gRPC layer listening on port ' +
+      grpcPort,
   );
 };
 
