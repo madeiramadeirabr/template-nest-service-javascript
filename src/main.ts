@@ -14,15 +14,14 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new GeneralErrorFilter(logger));
   app.connectMicroservice<MicroserviceOptions>(grpcClientOptions);
-  await app.startAllMicroservicesAsync();
+  await app.startAllMicroservices();
   await app.listen(restPort);
   logger.log(
     '🍻️ Core APIs Nest Service Template REST layer listening on port ' +
       restPort,
   );
   logger.log(
-    '🍻️ Core APIs Nest Service Template gRPC layer listening on port ' +
-      grpcPort,
+    '🍻️ Core APIs Nest Service Template gRPC layer listening on port ' + 50052,
   );
 };
 
