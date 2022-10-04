@@ -46,30 +46,31 @@ export class GeneralErrorFilter implements ExceptionFilter {
         (msg: any) => typeof msg === 'string',
       );
       if (isStringArray) {
-        const exceptionResult: ExceptionErrorType[] = exceptionResponse.message.reduce(
-          (stack: ExceptionErrorType[], current: string) => {
-            const [field, ...rest] = current.split(' ');
-            const message = rest.join(' ');
+        const exceptionResult: ExceptionErrorType[] =
+          exceptionResponse.message.reduce(
+            (stack: ExceptionErrorType[], current: string) => {
+              const [field, ...rest] = current.split(' ');
+              const message = rest.join(' ');
 
-            const addNewItemToStack = stack.every((stackItem) => {
-              if (stackItem.field === field) {
-                stackItem.messages.push(message);
-                return false;
-              }
-              return true;
-            });
-
-            if (addNewItemToStack) {
-              stack.push({
-                field: field,
-                messages: [message],
+              const addNewItemToStack = stack.every((stackItem) => {
+                if (stackItem.field === field) {
+                  stackItem.messages.push(message);
+                  return false;
+                }
+                return true;
               });
-            }
 
-            return stack;
-          },
-          [],
-        );
+              if (addNewItemToStack) {
+                stack.push({
+                  field: field,
+                  messages: [message],
+                });
+              }
+
+              return stack;
+            },
+            [],
+          );
         return exceptionResult;
       }
     }
