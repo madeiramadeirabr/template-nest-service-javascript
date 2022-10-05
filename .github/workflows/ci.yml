@@ -1,28 +1,64 @@
-name: Node.js CI
+name: Node.js CI With Cache
 on: 
   push:
     
 
 jobs:
+  dependencys:
+    name: dependencys
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          check-latest: true
+
+      - name: Get yarn cache directory path
+        id: npm-cache-dir-path
+        run: |
+          echo "::set-output name=dir::$(npm cache dir)"
+      - uses: actions/cache@v2
+        id: npm-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Install dependencies
+        run: npm install
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}
+        
   build:
+    needs: dependencys
     name: Npm install & build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
-    - run: npm ci
-    - run: npm run build --if-present
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}    
+      - run: npm run build --if-present
 
   checkLint:
     needs: build
     name: Npm checkLint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - run: npm install && npm run lint
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}  
+      - run: npm run lint
 
 
   teste-unitario: 
@@ -31,12 +67,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: unit_test
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
-    - run: npm install && npm run test 
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}  
+      - run:  npm run test 
     
   coverage: 
     needs: teste-unitario
@@ -44,5 +80,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: coverage
     steps:
-    - uses: actions/checkout@v2
-    - run: npm install && npm run test:cov
+      - uses: actions/cache@v2
+        id: restore-build
+        with:
+          path: ./*
+          key: ${{ github.sha }}  
+      - run: npm run test:cov
