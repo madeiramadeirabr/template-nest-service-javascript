@@ -4,7 +4,7 @@ services:
   health:
     build:
       context: .
-      dockerfile: Docker/Dockerfile
+      dockerfile: Docker/DockerfileDev
     volumes:
       - .:/app
     ports:
