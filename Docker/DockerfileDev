@@ -1,0 +1,17 @@
+FROM node:16-alpine
+
+# RUN mkdir -p /app
+WORKDIR /app
+
+RUN apk add --no-cache python3 gcc g++ make
+
+# Install project dependencies
+COPY package*.json ./
+RUN npm install
+
+# Build project
+COPY . .
+RUN npm run build
+
+# Run as shell instead of exec
+CMD npm run start:dev
