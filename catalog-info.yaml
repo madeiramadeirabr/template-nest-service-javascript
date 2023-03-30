@@ -4,7 +4,13 @@ metadata:
   name: template-nest-service-javascript
   annotations:
     github.com/project-slug: madeiramadeirabr/template-nest-service-javascript
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - typescript
+    - javascript
+    - shell
+    - dockerfile
 spec:
   type: template
-  lifecycle: experimental
-  owner: team-platform-services
+  lifecycle: production
+  owner: team-platform-engineering-admin
