@@ -38,12 +38,11 @@
     "@nestjs/core": "^9.1.2",
     "@nestjs/microservices": "^9.1.2",
     "@nestjs/platform-express": "^9.1.2",
-    "grpc": "^1.24.11",
     "install": "^0.13.0",
     "npm": "^8.19.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.7",
+    "rxjs": "^7.8.1",
     "ts-node-dev": "^1.1.8",
     "ts-proto": "^1.126.1"
   },
