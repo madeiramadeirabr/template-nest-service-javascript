@@ -39,7 +39,7 @@
     "@nestjs/microservices": "^9.4.3",
     "@nestjs/platform-express": "^9.4.3",
     "reflect-metadata": "^0.1.14",
-    "rimraf": "^3.0.2",
+    "rimraf": "^6.0.1",
     "rxjs": "^7.8.1",
     "ts-node-dev": "^1.1.8",
     "ts-proto": "^1.126.1"
