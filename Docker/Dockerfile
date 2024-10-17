@@ -1,5 +1,5 @@
 # Build dist
-FROM node:16-alpine AS development
+FROM node:20-alpine AS development
 
 WORKDIR /usr/src/app
 
@@ -16,7 +16,7 @@ RUN npm run build
 RUN rm -rf node_modules
 
 # start back
-FROM node:16-alpine AS production
+FROM node:20-alpine AS production
 
 ARG ENVIRONMENT_NAME=docker
 ENV ENVIRONMENT_NAME=${ENVIRONMENT_NAME}

@@ -19,7 +19,7 @@ MadeiraMadeira boilerplate project to build scalable, testable and high performa
 ### Installation
 ```bash
 $ cp example.env .env
-$ npm install --target=12.0.0 --target_platform=linux --target_arch=x64 --target_libc=musl
+$ npm install --target=20.0.0 --target_platform=linux --target_arch=x64 --target_libc=musl
 ```
 Notice: these flags are needed to build the gRPC package to the correct container architecture. This issue
 will be fixed in the next major release of NestJS (https://github.com/nestjs/nest/pull/6349). 
