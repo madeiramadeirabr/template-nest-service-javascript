@@ -2,7 +2,7 @@ import { Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { GrpcOptions } from '@nestjs/microservices/interfaces/microservice-configuration.interface';
 
-export const grpcPort = '5000';
+export const grpcPort = '5001';
 
 export const grpcClientOptions: GrpcOptions = {
   transport: Transport.GRPC,
